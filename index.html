@@ -1,0 +1,1616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-02-17 Wed 14:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>barrel.rymcg.tech</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="EnigmaCurry" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="meta/css/build/solarized-dark.css" />
+
+<script type="text/javascript" src="meta/css/build/all.min.js">
+/**
+ *
+ * @source: meta/css/build/all.min.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in meta/css/build/all.min.js.
+ *
+ * Copyright (C) 2012-2020 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in meta/css/build/all.min.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "above");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">barrel.rymcg.tech</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#Getting%20Started">1. Getting Started</a>
+<ul>
+<li><a href="#Introduction">1.1. Introduction</a></li>
+<li><a href="#Install%20literate-k3s">1.2. Install literate-k3s</a></li>
+<li><a href="#Create%20namespace%20directories">1.3. Create namespace directories</a></li>
+<li><a href="#Start%20livereload%20server">1.4. Start livereload server</a></li>
+</ul>
+</li>
+<li><a href="#Core%20Config">2. Core Config</a>
+<ul>
+<li><a href="#SRC_URL">2.1. SRC_URL</a></li>
+<li><a href="#CLUSTER">2.2. CLUSTER</a></li>
+<li><a href="#CLUSTER_SSH_USER">2.3. CLUSTER_SSH_USER</a></li>
+<li><a href="#KUBE_CONFIG">2.4. KUBE_CONFIG</a></li>
+<li><a href="#kubectl%20command">2.5. kubectl command</a></li>
+</ul>
+</li>
+<li><a href="#Create%20cluster">3. Create cluster</a></li>
+<li><a href="#kube-system">4. kube-system</a>
+<ul>
+<li><a href="#Traefik%20Config">4.1. Traefik Config</a>
+<ul>
+<li><a href="#TRAEFIK_ACME_EMAIL">4.1.1. TRAEFIK_ACME_EMAIL</a></li>
+<li><a href="#TRAEFIK_ACME_SERVER">4.1.2. TRAEFIK_ACME_SERVER</a></li>
+<li><a href="#TRAEFIK_WHOAMI_DOMAIN">4.1.3. TRAEFIK_WHOAMI_DOMAIN</a></li>
+<li><a href="#TRAEFIK_VERSION">4.1.4. TRAEFIK_VERSION</a></li>
+<li><a href="#TRAEFIK_LOG_LEVEL">4.1.5. TRAEFIK_LOG_LEVEL</a></li>
+</ul>
+</li>
+<li><a href="#Sealed%20Secrets">4.2. Sealed Secrets</a>
+<ul>
+<li><a href="#kube-system%2Fsealed-secrets%2Fkustomization.yaml">4.2.1. kube-system/sealed-secrets/kustomization.yaml</a></li>
+<li><a href="#SEALED_SECRETS_VERSION">4.2.2. SEALED_SECRETS_VERSION</a></li>
+</ul>
+</li>
+<li><a href="#Traefik%20Deployment">4.3. Traefik Deployment</a>
+<ul>
+<li><a href="#Deploy%20Traefik">4.3.1. Deploy Traefik</a></li>
+<li><a href="#Test%20Traefik%20whoami%20service">4.3.2. Test Traefik whoami service</a></li>
+<li><a href="#kube-system%2Ftraefik%2Fkustomization.yaml">4.3.3. kube-system/traefik/kustomization.yaml</a></li>
+<li><a href="#kube-system%2Ftraefik%2Frbac.yaml">4.3.4. kube-system/traefik/rbac.yaml</a></li>
+<li><a href="#kube-system%2Ftraefik%2Fpvc.yaml">4.3.5. kube-system/traefik/pvc.yaml</a></li>
+<li><a href="#kube-system%2Ftraefik%2Fdaemonset.yaml">4.3.6. kube-system/traefik/daemonset.yaml</a></li>
+<li><a href="#kube-system%2Ftraefk%2Fwhoami.yaml">4.3.7. kube-system/traefk/whoami.yaml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#flux-system">5. flux-system</a>
+<ul>
+<li><a href="#Flux%20Config">5.1. Flux Config</a>
+<ul>
+<li><a href="#FLUX_VERSION">5.1.1. FLUX_VERSION</a></li>
+<li><a href="#FLUX_REPO_NAME">5.1.2. FLUX_REPO_NAME</a></li>
+<li><a href="#FLUX_REPO_ORG">5.1.3. FLUX_REPO_ORG</a></li>
+<li><a href="#FLUX_REPO_HOST_PORT">5.1.4. FLUX_REPO_HOST_PORT</a></li>
+<li><a href="#FLUX_GIT_REMOTE">5.1.5. FLUX_GIT_REMOTE</a></li>
+</ul>
+</li>
+<li><a href="#Flux%20Deployment">5.2. Flux Deployment</a>
+<ul>
+<li><a href="#flux-system%20setup">5.2.1. flux-system setup</a></li>
+<li><a href="#Deploy%20Flux">5.2.2. Deploy Flux</a></li>
+<li><a href="#Create%20infrastructure%20repository">5.2.3. Create infrastructure repository</a></li>
+<li><a href="#Tell%20flux%20to%20watch%20the%20infrastructure%20repository">5.2.4. Tell flux to watch the infrastructure repository</a></li>
+<li><a href="#Test%20adding%20a%20new%20manifest%20to%20the%20git%20repository">5.2.5. Test adding a new manifest to the git repository</a></li>
+<li><a href="#flux-system%2Fkustomization.yaml">5.2.6. flux-system/kustomization.yaml</a></li>
+<li><a href="#flux-system%2Fhelm.sources.yaml">5.2.7. flux-system/helm.sources.yaml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#LICENSE">6. LICENSE</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-Getting%20Started" class="outline-2">
+<h2 id="Getting%20Started"><span class="section-number-2">1</span> Getting Started</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-Introduction" class="outline-3">
+<h3 id="Introduction"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+These instructions will create a <a href="https://www.python.org">Python</a> web development environment using
+<a href="https://fastapi.tiangolo.com/">FastAPI</a>, <a href="https://www.sqlalchemy.org/">SQLAlchemy</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, and <a href="https://redis.io/">Redis</a>, as well as create a new <a href="https://k3s.io">K3s</a>
+(single-node) cluster from which to host your application, combined with <a href="https://traefik.io/">Traefik</a>
+TLS Ingress, and <a href="https://toolkit.fluxcd.io/">Flux2</a> Continuous Delivery (Kubernetes manifests auto-redeploy
+to the cluster on git push).
+</p>
+
+<p>
+This is a <a href="https://github.com/EnigmaCurry/literate-k3s">literate-k3s</a> Emacs Org-Babel document, (or you may be reading its
+exported HTML form on the web.) If you are new to this, please read the upstream
+<a href="https://enigmacurry.github.io/literate-k3s/#Introduction">literate-k3s Introduction</a>. Your new cluster will inherit this living
+documentation, describing its entire infrastructure, and all of its deployments.
+This will service the entire lifetime of your cluster, and comes free with a
+nice automatic HTML export and <code>Table of Contents</code> containing <i>everything</i>
+(three levels deep) about your cluster.
+</p>
+
+<p>
+Keep in mind that the HTML export from this document contains the literal values
+of the configuration, including cluster specific path names (although we use <code>~</code>
+to indicate the home directory), and unique domain names intended for a single
+deployment, etc. Passwords and other high secrets are never shown. Less secure
+things like domain names and email addresses are shown literally in this
+document. This is perfect for documenting a specific cluster, and for running
+the <i>exact same config</i> again for the same (or replacement) cluster that this
+documentation was generated for, but if you are following along on a <i>different</i>
+workstation, or you are creating a <i>new</i> cluster, you should not copy and paste
+these commands directly from your web browser, but instead follow this page far
+enough to create your own copy of this document, and start editing the
+configuration contained there, and running commands directly from Emacs
+org-mode. This will create your own customized copy of this same page.
+</p>
+</div>
+</div>
+
+<div id="outline-container-Install%20literate-k3s" class="outline-3">
+<h3 id="Install%20literate-k3s"><span class="section-number-3">1.2</span> Install literate-k3s</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Your first step is to install literate-k3s, which you just need to clone the
+repository to your workstation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git clone https://github.com/EnigmaCurry/literate-k3s.git <span style="color: #2d9574;">\</span>
+    ~/git/vendor/enigmacurry/literate-k3s
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-Create%20namespace%20directories" class="outline-3">
+<h3 id="Create%20namespace%20directories"><span class="section-number-3">1.3</span> Create namespace directories</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Your second step is to create another new directory tree on your workstation, in
+which to form a new git repository, to hold all of the configurations for the
+new cluster. (When viewed in the HTML, this is a specific path structure for
+this current config. You will need to adapt this for your new cluster domain
+name, but keep the rest of the path parts the same. When viewed from Org source,
+you'll see that the <code>&lt;&lt;SRC_DIR&gt;&gt;</code> reference makes this part configurable.):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">mkdir -p ~/git/clusters/barrel.rymcg.tech/
+mkdir -p ~/git/clusters/barrel.rymcg.tech/kube-system/<span style="color: #4f97d7;">{</span>traefik,sealed-secrets<span style="color: #4f97d7;">}</span>
+mkdir -p ~/git/clusters/barrel.rymcg.tech/flux-system/
+mkdir -p ~/git/clusters/barrel.rymcg.tech/postgres/
+</pre>
+</div>
+
+<p>
+Download this current org source file into your new directory (likewise when
+viewed from Org source, the <code>&lt;&lt;SRC_URL&gt;&gt;</code> reference makes this part
+configurable):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #4f97d7;">cd</span> ~/git/clusters/barrel.rymcg.tech
+curl -LO https://raw.githubusercontent.com/enigmacurry/k3s-1.rymcg.tech/master/k3s-1.rymcg.tech.org
+</pre>
+</div>
+
+<p>
+Open and edit the downloaded file, in Emacs. When Emacs loads the file, Org mode
+will display a permission dialog, which you should confirm. This runs the
+initialization code from the <a href="https://github.com/EnigmaCurry/literate-k3s/blob/master/meta/org-meta.el">included org-meta.el</a> which sets up the on-save
+hooks to automatically export the YAML and HTML. Configure the variables in the <a href="#Core%20Config">Core Config</a> section. When you save this file, it automatically runs
+<code>org-resolve-deps-tangle</code>, which (re)creates several YAML manifest files which
+describe all of your cluster resources.
+</p>
+
+<p>
+The resulting directory structure will look like this (annotated):
+</p>
+<div class="org-src-container">
+<pre class="src src-example">├─.gitignore  &lt;-- git ignores .org-resolve-deps.org on next line
+├─.org-resolve-deps.org &lt;-- temporary Org src from org-resolve-deps-tangle
+├─flux-system &lt;-- namespace directory for Flux (K8s Continuous Delivery)
+│  └─kustomization.yaml &lt;-- Kustomize installs the gotk manifest
+├─index.html &lt;-- HTML export of this Org source document
+├─kube-system &lt;-- Root Cluster namespace
+│  ├─sealed-secrets
+│  │  └─kustomization.yaml  &lt;-- Links to Bitnami Sealed Secrets controller
+│  └─traefik &lt;-- Traefik is our TLS reverse proxy and Ingress Controller
+│     ├─crd.yaml &lt;-- Traefik Custom Resource Definitions manifest
+│     ├─daemonset.yaml &lt;-- Traefik DaemonSet manifest runs traefik on all nodes
+│     ├─kustomization.yaml &lt;-- Kustomize installs all these manifests
+│     ├─pvc.yaml &lt;-- PhysicalVolumeClaim creates 100MB volume to store acme.json
+│     ├─rbac.yaml &lt;-- Roles for Traefik to watch and respond to the cluster
+│     └─whoami.yaml &lt;-- Deployment manifest for `whoami` testing service
+├─pyapp &lt;-- All the Python app stuff will go here.
+├─meta &lt;-- Holds the CSS and JavaScript for the HTML export.
+│  └─css
+│     └─build
+│        ├─all.min.js
+│        └─solarized-dark.css
+└─barrel.rymcg.tech.org &lt;-- This org file you're reading now.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Start%20livereload%20server" class="outline-3">
+<h3 id="Start%20livereload%20server"><span class="section-number-3">1.4</span> Start livereload server</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+You can serve the exported HTML (<code>index.html</code>) in your local browser, and live
+reload it whenever it changes. This will start a new process in the buffer named
+<code>livereload</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">pip install livereload
+livereload -o0 -t ~/git/clusters/barrel.rymcg.tech/index.html &amp;
+</pre>
+</div>
+
+<p>
+Your browser should automatically open to <a href="http://127.0.0.1:35729/">http://127.0.0.1:35729/</a> and
+automatically refresh this page.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Core%20Config" class="outline-2">
+<h2 id="Core%20Config"><span class="section-number-2">2</span> Core Config</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-SRC_URL" class="outline-3">
+<h3 id="SRC_URL"><span class="section-number-3">2.1</span> SRC_URL</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+This is the source download URL for this document, used in the <a href="#Getting%20Started">Getting Started</a>
+guide above.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org947625c">https://raw.githubusercontent.com/enigmacurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-CLUSTER" class="outline-3">
+<h3 id="CLUSTER"><span class="section-number-3">2.2</span> CLUSTER</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Set <code>CLUSTER</code> to be the domain name for your cluster:
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="orgbac9689">barrel.rymcg.tech
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-CLUSTER_SSH_USER" class="outline-3">
+<h3 id="CLUSTER_SSH_USER"><span class="section-number-3">2.3</span> CLUSTER_SSH_USER</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Set <code>CLUSTER_SSH_USER</code> to be the admin SSH account of the cluster (For most
+cloud deployments, this should be <code>root</code>, but you can also use an account with
+no-password sudo privileges.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org92585be">root
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-KUBE_CONFIG" class="outline-3">
+<h3 id="KUBE_CONFIG"><span class="section-number-3">2.4</span> KUBE_CONFIG</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<code>KUBE_CONFIG</code> is the local path to the kubectl config file
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org8dde67f">${HOME}/.kube/barrel.rymcg.tech-config
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-kubectl%20command" class="outline-3">
+<h3 id="kubectl%20command"><span class="section-number-3">2.5</span> kubectl command</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Since you'll need to specify the kubectl config file each and every time you use
+<code>kubectl</code>, let's create a NoWeb alias for it (<code>&lt;&lt;kubectl&gt;&gt;</code>), to use in other
+code blocks.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org6227dac">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Create%20cluster" class="outline-2">
+<h2 id="Create%20cluster"><span class="section-number-2">3</span> Create cluster</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Prepare an Ubuntu or Debian node, setup SSH so that your workstation can access
+the root account with your key file (use <code>ssh-keygen</code> and <code>ssh-copy-id
+root@CLUSTER-DOMAIN</code> to generate and install key).
+</p>
+
+<p>
+Run <code>apt upgrade</code> and install <code>curl</code> on the server :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat &lt;&lt; EOF | ssh root@barrel.rymcg.tech /bin/bash
+<span style="color: #ffff00; font-weight: bold;">sudo apt -qq update &amp;&amp; sudo apt -qq upgrade -y &amp;&amp; sudo apt install -y curl</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+</pre>
+</div>
+
+<p>
+Install <a href="https://github.com/alexellis/k3sup#readme">k3sup</a>, then create the cluster:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #4f97d7;">set</span> -e
+mkdir -p ~/.kube
+k3sup install --host barrel.rymcg.tech --user root <span style="color: #2d9574;">\</span>
+  --local-path $<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config --k3s-extra-args <span style="color: #2d9574;">'--disable traefik'</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Wait a minute or two for the cluster to come up.</li>
+<li>Now test to see if you can connect and output node status (keep trying until
+it says <code>Ready</code>):</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config get nodes
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-kube-system" class="outline-2">
+<h2 id="kube-system"><span class="section-number-2">4</span> kube-system</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<code>kube-system</code> is the namespace for running system wide features, mostly network
+related. 
+</p>
+</div>
+<div id="outline-container-Traefik%20Config" class="outline-3">
+<h3 id="Traefik%20Config"><span class="section-number-3">4.1</span> Traefik Config</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Edit the variables for the Traefik config:
+</p>
+</div>
+<div id="outline-container-TRAEFIK_ACME_EMAIL" class="outline-4">
+<h4 id="TRAEFIK_ACME_EMAIL"><span class="section-number-4">4.1.1</span> TRAEFIK_ACME_EMAIL</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+<code>TRAEFIK_ACME_EMAIL</code> is the email address to register with the ACME service
+provider. 
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org879e4f0">letsencrypt@enigmacurry.com
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-TRAEFIK_ACME_SERVER" class="outline-4">
+<h4 id="TRAEFIK_ACME_SERVER"><span class="section-number-4">4.1.2</span> TRAEFIK_ACME_SERVER</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+<code>TRAEFIK_ACME_SERVER</code> is the URL for the Let's Encrypt API (Or other ACME
+provider). For development purposes, use the staging URL. For production use
+the URL <a href="https://acme-v02.api.letsencrypt.org/directory">https://acme-v02.api.letsencrypt.org/directory</a> instead (will produce
+valid certificates in web browsers).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-config" id="org5a79690">https://acme-staging-v02.api.letsencrypt.org/directory
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-TRAEFIK_WHOAMI_DOMAIN" class="outline-4">
+<h4 id="TRAEFIK_WHOAMI_DOMAIN"><span class="section-number-4">4.1.3</span> TRAEFIK_WHOAMI_DOMAIN</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+<a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It needs its own
+domain name to respond to. <code>TRAEFIK_WHOAMI_DOMAIN</code> is the subdomain that the
+whoami service responds to.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="orgf352bf9">whoami.barrel.rymcg.tech
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-TRAEFIK_VERSION" class="outline-4">
+<h4 id="TRAEFIK_VERSION"><span class="section-number-4">4.1.4</span> TRAEFIK_VERSION</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+The version number of Traefik to install (eg. <code>2.3</code>).
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="orga219ec0">v2.3
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-TRAEFIK_LOG_LEVEL" class="outline-4">
+<h4 id="TRAEFIK_LOG_LEVEL"><span class="section-number-4">4.1.5</span> TRAEFIK_LOG_LEVEL</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<p>
+<code>TRAEFIK_LOG_LEVEL</code> is the filter level on the traefik log.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org531a530">INFO
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-Sealed%20Secrets" class="outline-3">
+<h3 id="Sealed%20Secrets"><span class="section-number-3">4.2</span> Sealed Secrets</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Everyone knows you should not store private things like passwords or API tokens
+directly in source code, because it may accidentally get published. These things
+should be stored in Secrets, controlled only by your cluster and exposed as
+environment variables or files mounted to your authorized Pods. However, keeping
+these secrets local to this config is still desirable, so the use of <a href="https://github.com/bitnami-labs/sealed-secrets">Sealed
+Secrets</a> allows us to store an encrypted copy of the secrets in your git
+repository. Only the cluster can decrypt sealed secrets.
+</p>
+</div>
+
+<div id="outline-container-kube-system%2Fsealed-secrets%2Fkustomization.yaml" class="outline-4">
+<h4 id="kube-system%2Fsealed-secrets%2Fkustomization.yaml"><span class="section-number-4">4.2.1</span> kube-system/sealed-secrets/kustomization.yaml</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<div class="org-src-container">
+<pre class="src src-yaml" id="orgbabc605"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<span style="color: #7590db;">kind</span>: Kustomization
+<span style="color: #7590db;">resources</span>:
+- https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.14.1/controller.yaml
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-SEALED_SECRETS_VERSION" class="outline-4">
+<h4 id="SEALED_SECRETS_VERSION"><span class="section-number-4">4.2.2</span> SEALED_SECRETS_VERSION</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+Choose the <a href="https://github.com/bitnami-labs/sealed-secrets/releases">release version for Sealed Secrets</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org3d42750">v0.14.1
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-Traefik%20Deployment" class="outline-3">
+<h3 id="Traefik%20Deployment"><span class="section-number-3">4.3</span> Traefik Deployment</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<a href="https://doc.traefik.io/traefik/">Traefik</a> is a reverse proxy that will allow HTTP(s) and TCP ingress to your
+cluster. This will let you run public web services from containers in your
+cluster, including automatic TLS forwarding by default (Using free Let's Encrypt
+certificates, or <a href="https://github.com/smallstep/certificates#step-certificates">any other ACME service</a>). With k3s + traefik there is no
+requirement for any external load balancer.
+</p>
+
+<p>
+This config automatically redirects HTTP port 80 to HTTPs port 443, and TCP port
+2222 forwards SSH traffic for <a href="../../vendor/enigmacurry/literate-k3s/lib/gitea.html">Gitea</a>. 
+</p>
+
+<p>
+The <code>whoami</code> service is a small test service, for testing the functionality of
+Traefik, including the TLS certificate creation process, and serving as the most
+basic example of setting up a Traefik IngressRoute.
+</p>
+</div>
+
+<div id="outline-container-Deploy%20Traefik" class="outline-4">
+<h4 id="Deploy%20Traefik"><span class="section-number-4">4.3.1</span> Deploy Traefik</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Download the Traefik Custom Resource Definitions: 
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">curl -Lo ~/git/clusters/barrel.rymcg.tech/kube-system/traefik/crd.yaml <span style="color: #2d9574;">\</span>
+  https://raw.githubusercontent.com/traefik/traefik/<span style="color: #2d9574;">\</span>
+v2.3/docs/content/reference/dynamic-configuration/<span style="color: #2d9574;">\</span>
+kubernetes-crd-definition.yml
+</pre>
+</div>
+
+<p>
+Deploy Traefik via kubectl (NOTE: you will get an error the first time you run
+this, just run it TWICE):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config apply -k ~/git/clusters/barrel.rymcg.tech/kube-system/traefik
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Test%20Traefik%20whoami%20service" class="outline-4">
+<h4 id="Test%20Traefik%20whoami%20service"><span class="section-number-4">4.3.2</span> Test Traefik whoami service</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+Test with TLS verification off:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">curl -Lk whoami.barrel.rymcg.tech
+</pre>
+</div>
+
+<p>
+Test with TLS verification on:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">curl -L whoami.barrel.rymcg.tech
+</pre>
+</div>
+
+<p>
+TLS will not verify until you use the production <a href="#org5a79690">TRAEFIK_ACME_SERVER</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-kube-system%2Ftraefik%2Fkustomization.yaml" class="outline-4">
+<h4 id="kube-system%2Ftraefik%2Fkustomization.yaml"><span class="section-number-4">4.3.3</span> kube-system/traefik/kustomization.yaml</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<span style="color: #7590db;">kind</span>: Kustomization
+<span style="color: #7590db;">resources</span>:
+- crd.yaml
+- rbac.yaml
+- pvc.yaml
+- daemonset.yaml
+- whoami.yaml
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-kube-system%2Ftraefik%2Frbac.yaml" class="outline-4">
+<h4 id="kube-system%2Ftraefik%2Frbac.yaml"><span class="section-number-4">4.3.4</span> kube-system/traefik/rbac.yaml</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<p>
+RBAC is <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role Based Authentication Control</a> and it grants Traefik extra privileges
+to watch the state of your cluster, and see when pods are created.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">kind</span>: ServiceAccount
+<span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: traefik-ingress-controller
+  <span style="color: #7590db;">namespace</span>: kube-system
+  <span style="color: #7590db;">labels</span>:
+    <span style="color: #7590db;">app.kubernetes.io/name</span>: traefik
+    <span style="color: #7590db;">app.kubernetes.io/instance</span>: traefik
+  <span style="color: #7590db;">annotations</span>:
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">kind</span>: ClusterRole
+<span style="color: #7590db;">apiVersion</span>: rbac.authorization.k8s.io/v1
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">namespace</span>: kube-system
+  <span style="color: #7590db;">name</span>: traefik-ingress-controller
+
+<span style="color: #7590db;">rules</span>:
+  - <span style="color: #7590db;">apiGroups</span>:
+      - <span style="color: #2d9574;">""</span>
+    <span style="color: #7590db;">resources</span>:
+      - services
+      - endpoints
+      - secrets
+    <span style="color: #7590db;">verbs</span>:
+      - get
+      - list
+      - watch
+  - <span style="color: #7590db;">apiGroups</span>:
+      - extensions
+      - networking.k8s.io
+    <span style="color: #7590db;">resources</span>:
+      - ingresses
+      - ingressclasses
+    <span style="color: #7590db;">verbs</span>:
+      - get
+      - list
+      - watch
+  - <span style="color: #7590db;">apiGroups</span>:
+      - extensions
+    <span style="color: #7590db;">resources</span>:
+      - ingresses/status
+    <span style="color: #7590db;">verbs</span>:
+      - update
+  - <span style="color: #7590db;">apiGroups</span>:
+      - traefik.containo.us
+    <span style="color: #7590db;">resources</span>:
+      - middlewares
+      - ingressroutes
+      - traefikservices
+      - ingressroutetcps
+      - ingressrouteudps
+      - tlsoptions
+      - tlsstores
+    <span style="color: #7590db;">verbs</span>:
+      - get
+      - list
+      - watch
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">kind</span>: ClusterRoleBinding
+<span style="color: #7590db;">apiVersion</span>: rbac.authorization.k8s.io/v1
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: traefik-ingress-controller
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">roleRef</span>:
+  <span style="color: #7590db;">apiGroup</span>: rbac.authorization.k8s.io
+  <span style="color: #7590db;">kind</span>: ClusterRole
+  <span style="color: #7590db;">name</span>: traefik-ingress-controller
+<span style="color: #7590db;">subjects</span>:
+  - <span style="color: #7590db;">kind</span>: ServiceAccount
+    <span style="color: #7590db;">name</span>: traefik-ingress-controller
+    <span style="color: #7590db;">namespace</span>: kube-system
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-kube-system%2Ftraefik%2Fpvc.yaml" class="outline-4">
+<h4 id="kube-system%2Ftraefik%2Fpvc.yaml"><span class="section-number-4">4.3.5</span> kube-system/traefik/pvc.yaml</h4>
+<div class="outline-text-4" id="text-4-3-5">
+<p>
+a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">PersistentVolumeClaim</a> allocates a permanent volume for a Pod. This is one is
+for 100MB to store the Traefik <code>acme.json</code> file.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">kind</span>: PersistentVolumeClaim
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: traefik-data
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color: #7590db;">resources</span>:
+    <span style="color: #7590db;">requests</span>:
+      <span style="color: #7590db;">storage</span>: 100M
+  <span style="color: #7590db;">storageClassName</span>: local-path
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-kube-system%2Ftraefik%2Fdaemonset.yaml" class="outline-4">
+<h4 id="kube-system%2Ftraefik%2Fdaemonset.yaml"><span class="section-number-4">4.3.6</span> kube-system/traefik/daemonset.yaml</h4>
+<div class="outline-text-4" id="text-4-3-6">
+<p>
+A <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">DaemonSet</a> is one method of deployment in Kubernetes (others being <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">StatefulSet</a>
+and <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a>). DaemonSet is cool because it replicates a given pod on to every
+single node in the cluster. We want Traefik to listen on every node and be able
+to direct traffic to any other node.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: apps/v1
+<span style="color: #7590db;">kind</span>: DaemonSet
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">labels</span>:
+    <span style="color: #7590db;">k8s-app</span>: traefik-ingress-lb
+  <span style="color: #7590db;">name</span>: traefik
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">selector</span>:
+    <span style="color: #7590db;">matchLabels</span>:
+      <span style="color: #7590db;">k8s-app</span>: traefik-ingress-lb
+      <span style="color: #7590db;">name</span>: traefik-ingress-lb
+  <span style="color: #7590db;">template</span>:
+    <span style="color: #7590db;">metadata</span>:
+      <span style="color: #7590db;">labels</span>:
+        <span style="color: #7590db;">k8s-app</span>: traefik-ingress-lb
+        <span style="color: #7590db;">name</span>: traefik-ingress-lb
+    <span style="color: #7590db;">spec</span>:
+      <span style="color: #7590db;">containers</span>:
+      - <span style="color: #7590db;">args</span>:
+        - --api
+        - --log.level=INFO
+        - --api.insecure=false
+        - --api.dashboard=false
+        - --accesslog
+        - --global.checknewversion=true
+        - --entryPoints.web.address=:80
+        - --entryPoints.websecure.address=:443
+        - --entrypoints.web.http.redirections.entryPoint.to=websecure
+        - --entrypoints.websecure.http.tls.certResolver=default
+        - --ping=true
+        - --providers.kubernetescrd=true
+        - --providers.kubernetesingress=true
+        - --certificatesresolvers.default.acme.storage=/traefik-data/acme.json
+        - --certificatesresolvers.default.acme.tlschallenge=true
+        - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+        - --certificatesresolvers.default.acme.email=letsencrypt@enigmacurry.com
+        - --entrypoints.ssh.address=:2222
+        <span style="color: #7590db;">image</span>: traefik:v2.3
+        <span style="color: #7590db;">name</span>: traefik-ingress-lb
+        <span style="color: #7590db;">volumeMounts</span>:
+        - <span style="color: #7590db;">name</span>: traefik-data
+          <span style="color: #7590db;">mountPath</span>: /traefik-data
+        <span style="color: #7590db;">ports</span>:
+        - <span style="color: #7590db;">containerPort</span>: 80
+          <span style="color: #7590db;">hostPort</span>: 80
+          <span style="color: #7590db;">name</span>: web
+        - <span style="color: #7590db;">containerPort</span>: 443
+          <span style="color: #7590db;">hostPort</span>: 443
+          <span style="color: #7590db;">name</span>: websecure
+        - <span style="color: #7590db;">containerPort</span>: 2222
+          <span style="color: #7590db;">hostPort</span>: 2222
+          <span style="color: #7590db;">name</span>: ssh
+        <span style="color: #7590db;">securityContext</span>:
+          <span style="color: #7590db;">capabilities</span>:
+            <span style="color: #7590db;">add</span>:
+            - NET_BIND_SERVICE
+            <span style="color: #7590db;">drop</span>:
+            - ALL
+      <span style="color: #7590db;">serviceAccountName</span>: traefik-ingress-controller
+      <span style="color: #7590db;">terminationGracePeriodSeconds</span>: 60
+      <span style="color: #7590db;">volumes</span>:
+      - <span style="color: #7590db;">name</span>: traefik-data
+        <span style="color: #7590db;">persistentVolumeClaim</span>:
+          <span style="color: #7590db;">claimName</span>: traefik-data
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-kube-system%2Ftraefk%2Fwhoami.yaml" class="outline-4">
+<h4 id="kube-system%2Ftraefk%2Fwhoami.yaml"><span class="section-number-4">4.3.7</span> kube-system/traefk/whoami.yaml</h4>
+<div class="outline-text-4" id="text-4-3-7">
+<p>
+<a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It listens to the
+domain <a href="#orgf352bf9">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">kind</span>: Service
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: whoami
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">ports</span>:
+  - <span style="color: #7590db;">name</span>: web
+    <span style="color: #7590db;">port</span>: 80
+    <span style="color: #7590db;">protocol</span>: TCP
+  <span style="color: #7590db;">selector</span>:
+    <span style="color: #7590db;">app</span>: whoami
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color: #7590db;">kind</span>: TraefikService
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: whoami
+  <span style="color: #7590db;">namespace</span>: kube-system
+
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">weighted</span>:
+    <span style="color: #7590db;">services</span>:
+      - <span style="color: #7590db;">name</span>: whoami
+        <span style="color: #7590db;">weight</span>: 1
+        <span style="color: #7590db;">port</span>: 80
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: apps/v1
+<span style="color: #7590db;">kind</span>: Deployment
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">labels</span>:
+    <span style="color: #7590db;">app</span>: whoami
+  <span style="color: #7590db;">name</span>: whoami
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">replicas</span>: 1
+  <span style="color: #7590db;">selector</span>:
+    <span style="color: #7590db;">matchLabels</span>:
+      <span style="color: #7590db;">app</span>: whoami
+  <span style="color: #7590db;">template</span>:
+    <span style="color: #7590db;">metadata</span>:
+      <span style="color: #7590db;">labels</span>:
+        <span style="color: #7590db;">app</span>: whoami
+    <span style="color: #7590db;">spec</span>:
+      <span style="color: #7590db;">containers</span>:
+      - <span style="color: #7590db;">image</span>: containous/whoami
+        <span style="color: #7590db;">name</span>: whoami
+        <span style="color: #7590db;">ports</span>:
+        - <span style="color: #7590db;">containerPort</span>: 80
+          <span style="color: #7590db;">name</span>: web
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color: #7590db;">kind</span>: IngressRoute
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: whoami
+  <span style="color: #7590db;">namespace</span>: kube-system
+  <span style="color: #7590db;">annotations</span>:
+    <span style="color: #7590db;">traefik.ingress.kubernetes.io/router.entrypoints</span>: websecure
+    <span style="color: #7590db;">traefik.ingress.kubernetes.io/router.tls</span>: <span style="color: #2d9574;">"true"</span>
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">entryPoints</span>:
+  - websecure
+  <span style="color: #7590db;">routes</span>:
+  - <span style="color: #7590db;">kind</span>: Rule
+    <span style="color: #7590db;">match</span>: Host(`whoami.barrel.rymcg.tech`)
+    <span style="color: #7590db;">services</span>:
+    - <span style="color: #7590db;">name</span>: whoami
+      <span style="color: #7590db;">port</span>: 80
+  <span style="color: #7590db;">tls</span>:
+    <span style="color: #7590db;">certResolver</span>: default
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-flux-system" class="outline-2">
+<h2 id="flux-system"><span class="section-number-2">5</span> flux-system</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-Flux%20Config" class="outline-3">
+<h3 id="Flux%20Config"><span class="section-number-3">5.1</span> Flux Config</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-FLUX_VERSION" class="outline-4">
+<h4 id="FLUX_VERSION"><span class="section-number-4">5.1.1</span> FLUX_VERSION</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<p>
+Choose the <a href="https://github.com/fluxcd/flux2/releases">Flux2 release version</a> :
+</p>
+<div class="org-src-container">
+<pre class="src src-config">v0.7.7
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-FLUX_REPO_NAME" class="outline-4">
+<h4 id="FLUX_REPO_NAME"><span class="section-number-4">5.1.2</span> FLUX_REPO_NAME</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+The name of the git repository containing these org files, and from which flux
+reads. Usually it's the same as <code>CLUSTER</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org73ca26f">barrel.rymcg.tech
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-FLUX_REPO_ORG" class="outline-4">
+<h4 id="FLUX_REPO_ORG"><span class="section-number-4">5.1.3</span> FLUX_REPO_ORG</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<p>
+The name of the owner of the git repository.
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="orgfaf1a2e">enigmacurry
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-FLUX_REPO_HOST_PORT" class="outline-4">
+<h4 id="FLUX_REPO_HOST_PORT"><span class="section-number-4">5.1.4</span> FLUX_REPO_HOST_PORT</h4>
+<div class="outline-text-4" id="text-5-1-4">
+<p>
+The Hostname and Port number of the git repository remote URL:
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org640adaf">github.com:22
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-FLUX_GIT_REMOTE" class="outline-4">
+<h4 id="FLUX_GIT_REMOTE"><span class="section-number-4">5.1.5</span> FLUX_GIT_REMOTE</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<p>
+The SSH Git URL of your remote repository. Note the syntax difference between
+this and the format that GitHub shows on their repository pages: Must begin with
+<code>ssh://</code> and the use of a <code>/</code> instead of a <code>:</code> between the domain and
+organization name. (This might work with other URL forms, like HTTPS, but this
+is the only one that's been tested:)
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org545785c">ssh://git@github.com:22/enigmacurry/barrel.rymcg.tech.git
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-Flux%20Deployment" class="outline-3">
+<h3 id="Flux%20Deployment"><span class="section-number-3">5.2</span> Flux Deployment</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+<code>flux-system</code> is the namespace setup for <a href="https://github.com/fluxcd/flux2">Flux</a>.
+</p>
+</div>
+<div id="outline-container-flux-system%20setup" class="outline-4">
+<h4 id="flux-system%20setup"><span class="section-number-4">5.2.1</span> flux-system setup</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+You need to <a href="https://github.com/fluxcd/flux2/tree/main/install">install the flux command line tool</a>, or you can <a href="https://blog.rymcg.tech/blog/k3s/k3s-01-setup#create-toolbox-container-optional">run it from a
+container</a> or use the <code>flux-go</code> AUR package on Arch Linux.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">flux install --version= --arch=amd64 --export &gt; ~/git/clusters/barrel.rymcg.tech/flux-system/gotk-components.yaml
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Deploy%20Flux" class="outline-4">
+<h4 id="Deploy%20Flux"><span class="section-number-4">5.2.2</span> Deploy Flux</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+NOTE: you will get an error the <i>first</i> time you run this. Run this TWICE:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config apply -k ~/git/clusters/barrel.rymcg.tech/flux-system
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Create%20infrastructure%20repository" class="outline-4">
+<h4 id="Create%20infrastructure%20repository"><span class="section-number-4">5.2.3</span> Create infrastructure repository</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<p>
+You will now create a git repository on gitea or github or gitlab or wherever
+you can, that will serve as the root source of all the manifests on your
+cluster. You will commit and push all of the generated YAML files to this
+repository and Flux will monitor this repository and keep the cluster in sync
+with its state.
+</p>
+
+<p>
+If using Gitea, click the <code>+</code> icon in the upper right corner to create a <code>New
+Repository</code>. Call the new repository the same as <a href="#org73ca26f">FLUX_REPO_NAME</a>.
+</p>
+
+<p>
+Initialize the git repository if needed:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech init
+</pre>
+</div>
+
+<p>
+Set the new gitea repository as the git origin remote:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech remote add origin ssh://git@github.com:22/enigmacurry/barrel.rymcg.tech.git
+</pre>
+</div>
+
+<p>
+Add the src directory to the repository and commit it:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech add .
+git -C ~/git/clusters/barrel.rymcg.tech commit -m <span style="color: #2d9574;">"Initial commit for new cluster barrel.rymcg.tech"</span>
+</pre>
+</div>
+
+<p>
+Push the changes to the remote:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech push -u origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Tell%20flux%20to%20watch%20the%20infrastructure%20repository" class="outline-4">
+<h4 id="Tell%20flux%20to%20watch%20the%20infrastructure%20repository"><span class="section-number-4">5.2.4</span> Tell flux to watch the infrastructure repository</h4>
+<div class="outline-text-4" id="text-5-2-4">
+<p>
+This next command is <i>interactive only</i>, so you must run it in a separate
+terminal, not from Org. (Org won't even let you run it, due to <code>:eval no</code>). It's
+easiest to copy and paste this next command from the HTML export (in which all
+NoWeb references are resolved) rather than from this Org file.
+</p>
+
+<p>
+Create the <code>Source</code> resource:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">KUBECONFIG</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config
+flux create source git barrel.rymcg.tech <span style="color: #2d9574;">\</span>
+  --url=ssh://git@github.com:22/enigmacurry/barrel.rymcg.tech.git <span style="color: #2d9574;">\</span>
+  --ssh-key-algorithm=rsa <span style="color: #2d9574;">\</span>
+  --ssh-rsa-bits=<span style="color: #a45bad;">4096</span> <span style="color: #2d9574;">\</span>
+  --branch=master <span style="color: #2d9574;">\</span>
+  --interval=<span style="color: #a45bad;">1m</span>
+</pre>
+</div>
+
+<p>
+Flux will automatically create its own SSH key, and will output its public SSH
+key to the terminal and wait for you. You must copy this key and install it as a
+Deploy Key in the remote git repository settings. If you use Gitea, add the
+deploy key under the repository <code>Settings-&gt;Deploy Keys</code>. The deploy key does not
+require write privileges. Once installed, come back to the terminal and press
+<code>Y</code> and <code>Enter</code> to continue, and it will test that the key is installed
+correctly.
+</p>
+
+<p>
+The rest of these commands can run non-interactively, so go ahead and run the
+rest as you normally do from Emacs Org.
+</p>
+
+<p>
+Create the <code>Kustomization</code> resource and apply it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">KUBECONFIG</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config
+flux create kustomization barrel.rymcg.tech <span style="color: #2d9574;">\</span>
+  --source=barrel.rymcg.tech <span style="color: #2d9574;">\</span>
+  --path=<span style="color: #2d9574;">"./"</span> <span style="color: #2d9574;">\</span>
+  --prune=true <span style="color: #2d9574;">\</span>
+  --interval=<span style="color: #a45bad;">10m</span> --export &gt; ~/git/clusters/barrel.rymcg.tech/flux-system/kustomize.sources.yaml &amp;&amp; <span style="color: #2d9574;">\</span>
+  kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config apply -f ~/git/clusters/barrel.rymcg.tech/flux-system/kustomize.sources.yaml
+</pre>
+</div>
+
+<p>
+The Source controller periodically pulls changes from the git repository. The
+Kustomize controller applies changes to the cluster. If you run into problems,
+you should check the logs of these two controllers:
+</p>
+
+<p>
+Check the logs of the flux Source controller:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config -n flux-system <span style="color: #2d9574;">\</span>
+        logs deployment/source-controller | tail -n <span style="color: #a45bad;">10</span>
+</pre>
+</div>
+
+<p>
+Check the logs of the flux Kustomize controller:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config -n flux-system <span style="color: #2d9574;">\</span>
+        logs deployment/source-controller | tail -n <span style="color: #a45bad;">10</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Test%20adding%20a%20new%20manifest%20to%20the%20git%20repository" class="outline-4">
+<h4 id="Test%20adding%20a%20new%20manifest%20to%20the%20git%20repository"><span class="section-number-4">5.2.5</span> Test adding a new manifest to the git repository</h4>
+<div class="outline-text-4" id="text-5-2-5">
+<p>
+OK now, in theory, you are done using <code>kubectl apply</code>. From now on, all you have
+to do is commit and push manifests to your git repository, and Flux will
+automatically apply them to your cluster. So let's test that out:
+</p>
+
+<p>
+Create a new namespace just for testing. Create the manifests:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">mkdir -p ~/git/clusters/barrel.rymcg.tech/just-a-test
+cat &lt;&lt; EOF &gt; ~/git/clusters/barrel.rymcg.tech/just-a-test/kustomization.yaml
+<span style="color: #ffff00; font-weight: bold;">apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span style="color: #ffff00; font-weight: bold;">kind: Kustomization</span>
+<span style="color: #ffff00; font-weight: bold;">resources:</span>
+<span style="color: #ffff00; font-weight: bold;">- namespace.yaml</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+cat &lt;&lt; EOF &gt; ~/git/clusters/barrel.rymcg.tech/just-a-test/namespace.yaml
+<span style="color: #ffff00; font-weight: bold;">apiVersion: v1</span>
+<span style="color: #ffff00; font-weight: bold;">kind: Namespace</span>
+<span style="color: #ffff00; font-weight: bold;">metadata:</span>
+<span style="color: #ffff00; font-weight: bold;">  name: just-a-test</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+</pre>
+</div>
+
+<p>
+Commit the changes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech add just-a-test
+git -C ~/git/clusters/barrel.rymcg.tech commit -m <span style="color: #2d9574;">"just-a-test"</span>
+</pre>
+</div>
+
+<p>
+Push the changes:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech push origin
+</pre>
+</div>
+
+<p>
+And in a little less than a minute, you should see the new namespace appear:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config get ns just-a-test
+</pre>
+</div>
+
+<p>
+Now delete the <code>just-a-test</code> directory and commit:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">rm -rf ~/git/clusters/barrel.rymcg.tech/just-a-test/
+git -C ~/git/clusters/barrel.rymcg.tech add just-a-test/
+git -C ~/git/clusters/barrel.rymcg.tech commit -m <span style="color: #2d9574;">"remove just-a-test"</span>
+</pre>
+</div>
+
+<p>
+Push the changes again:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git -C ~/git/clusters/barrel.rymcg.tech push origin
+</pre>
+</div>
+
+<p>
+And in another minute or so, the namespace should be gone:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">kubectl --kubeconfig=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/.kube/barrel.rymcg.tech-config get ns just-a-test
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-flux-system%2Fkustomization.yaml" class="outline-4">
+<h4 id="flux-system%2Fkustomization.yaml"><span class="section-number-4">5.2.6</span> flux-system/kustomization.yaml</h4>
+<div class="outline-text-4" id="text-5-2-6">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<span style="color: #7590db;">kind</span>: Kustomization
+<span style="color: #7590db;">resources</span>:
+- gotk-components.yaml
+- helm.sources.yaml
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-flux-system%2Fhelm.sources.yaml" class="outline-4">
+<h4 id="flux-system%2Fhelm.sources.yaml"><span class="section-number-4">5.2.7</span> flux-system/helm.sources.yaml</h4>
+<div class="outline-text-4" id="text-5-2-7">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: source.toolkit.fluxcd.io/v1beta1
+<span style="color: #7590db;">kind</span>: HelmRepository
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: bitnami
+  <span style="color: #7590db;">namespace</span>: flux-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">interval</span>: 12h0m0s
+  <span style="color: #7590db;">url</span>: https://charts.bitnami.com/bitnami
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-LICENSE" class="outline-2">
+<h2 id="LICENSE"><span class="section-number-2">6</span> LICENSE</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Here are the licenses for <a href="https://github.com/EnigmaCurry/literate-k3s">enigmacurry/literate-k3s</a> and its accompanying
+libraries:
+</p>
+
+<pre class="example">
+Copyright 2021 EnigmaCurry - https://github.com/EnigmaCurry/literate-k3s
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre>
+
+
+<p>
+The HTML export stylesheet and javascript code is forked from
+<a href="https://github.com/thomasf/solarized-css">thomasf/solarized-css</a> into the <code>css/</code> directory and has a separate LICENSE:
+</p>
+
+<pre class="example">
+The MIT License (MIT)
+
+Copyright (c) 2015 Thomas Frössman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre>
+
+
+<p>
+<a href="https://github.com/alphapapa/unpackaged.el">alphapapa/unpackaged.el</a> is licensed under the <a href="https://github.com/alphapapa/unpackaged.el/blob/master/LICENSE">GNU General Public License v3.0</a>.
+Select functions from this package have been copied verbatim into the
+literate-k3s package under <a href="https://github.com/EnigmaCurry/literate-k3s/blob/master/meta/unpackaged.el">meta/unpackaged.el</a>, which fixes some bugs in Org HTML
+exports. It is the unpackaged nature of this code that required copying into the
+literate-k3s codebase, but these same functions can be installed from the
+upstream repository instead, and thus would have this license restriction
+removed.
+</p>
+
+<pre class="example">
+https://github.com/alphapapa/unpackaged.el
+Copyright (C) 2018  Adam Porter
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: EnigmaCurry</p>
+<p class="date">Created: 2021-02-17 Wed 14:20</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

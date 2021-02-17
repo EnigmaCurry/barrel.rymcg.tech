@@ -1,0 +1,339 @@
+#+title: barrel.rymcg.tech
+#+author: EnigmaCurry
+#+OPTIONS: ^:{}
+#+EXPORT_FILE_NAME: index.html
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/meta/export-html.org"
+
+* Getting Started
+** Introduction
+These instructions will create a [[https://www.python.org][Python]] web development environment using
+[[https://fastapi.tiangolo.com/][FastAPI]], [[https://www.sqlalchemy.org/][SQLAlchemy]], [[https://www.postgresql.org/][PostgreSQL]], and [[https://redis.io/][Redis]], as well as create a new [[https://k3s.io][K3s]]
+(single-node) cluster from which to host your application, combined with [[https://traefik.io/][Traefik]]
+TLS Ingress, and [[https://toolkit.fluxcd.io/][Flux2]] Continuous Delivery (Kubernetes manifests auto-redeploy
+to the cluster on git push).
+
+This is a [[https://github.com/EnigmaCurry/literate-k3s][literate-k3s]] Emacs Org-Babel document, (or you may be reading its
+exported HTML form on the web.) If you are new to this, please read the upstream
+[[https://enigmacurry.github.io/literate-k3s/#Introduction][literate-k3s Introduction]]. Your new cluster will inherit this living
+documentation, describing its entire infrastructure, and all of its deployments.
+This will service the entire lifetime of your cluster, and comes free with a
+nice automatic HTML export and =Table of Contents= containing /everything/
+(three levels deep) about your cluster.
+
+Keep in mind that the HTML export from this document contains the literal values
+of the configuration, including cluster specific path names (although we use =~=
+to indicate the home directory), and unique domain names intended for a single
+deployment, etc. Passwords and other high secrets are never shown. Less secure
+things like domain names and email addresses are shown literally in this
+document. This is perfect for documenting a specific cluster, and for running
+the /exact same config/ again for the same (or replacement) cluster that this
+documentation was generated for, but if you are following along on a /different/
+workstation, or you are creating a /new/ cluster, you should not copy and paste
+these commands directly from your web browser, but instead follow this page far
+enough to create your own copy of this document, and start editing the
+configuration contained there, and running commands directly from Emacs
+org-mode. This will create your own customized copy of this same page.
+
+** Install literate-k3s
+Your first step is to install literate-k3s, which you just need to clone the
+repository to your workstation:
+
+#+begin_src shell :noweb yes :eval never-export
+git clone https://github.com/EnigmaCurry/literate-k3s.git \
+    ~/git/vendor/enigmacurry/literate-k3s
+#+end_src
+** Create namespace directories
+Your second step is to create another new directory tree on your workstation, in
+which to form a new git repository, to hold all of the configurations for the
+new cluster. (When viewed in the HTML, this is a specific path structure for
+this current config. You will need to adapt this for your new cluster domain
+name, but keep the rest of the path parts the same. When viewed from Org source,
+you'll see that the =<<SRC_DIR>>= reference makes this part configurable.):
+
+#+begin_src shell :noweb yes :eval never-export
+mkdir -p <<SRC_DIR>>/
+mkdir -p <<SRC_DIR>>/kube-system/{traefik,sealed-secrets}
+mkdir -p <<SRC_DIR>>/flux-system/
+mkdir -p <<SRC_DIR>>/postgres/
+#+end_src
+
+#+RESULTS:
+
+Download this current org source file into your new directory (likewise when
+viewed from Org source, the =<<SRC_URL>>= reference makes this part
+configurable):
+
+#+begin_src shell :noweb yes :eval never-export
+cd <<SRC_DIR>>
+curl -LO <<SRC_URL>>
+#+end_src
+
+Open and edit the downloaded file, in Emacs. When Emacs loads the file, Org mode
+will display a permission dialog, which you should confirm. This runs the
+initialization code from the [[https://github.com/EnigmaCurry/literate-k3s/blob/master/meta/org-meta.el][included org-meta.el]] which sets up the on-save
+hooks to automatically export the YAML and HTML. Configure the variables in the [[Core
+ Config][Core Config]] section. When you save this file, it automatically runs
+=org-resolve-deps-tangle=, which (re)creates several YAML manifest files which
+describe all of your cluster resources.
+
+The resulting directory structure will look like this (annotated):
+#+begin_src example :noweb yes
+ ├─.gitignore  <-- git ignores .org-resolve-deps.org on next line
+ ├─.org-resolve-deps.org <-- temporary Org src from org-resolve-deps-tangle
+ ├─flux-system <-- namespace directory for Flux (K8s Continuous Delivery)
+ │  └─kustomization.yaml <-- Kustomize installs the gotk manifest
+ ├─index.html <-- HTML export of this Org source document
+ ├─kube-system <-- Root Cluster namespace
+ │  ├─sealed-secrets
+ │  │  └─kustomization.yaml  <-- Links to Bitnami Sealed Secrets controller
+ │  └─traefik <-- Traefik is our TLS reverse proxy and Ingress Controller
+ │     ├─crd.yaml <-- Traefik Custom Resource Definitions manifest
+ │     ├─daemonset.yaml <-- Traefik DaemonSet manifest runs traefik on all nodes
+ │     ├─kustomization.yaml <-- Kustomize installs all these manifests
+ │     ├─pvc.yaml <-- PhysicalVolumeClaim creates 100MB volume to store acme.json
+ │     ├─rbac.yaml <-- Roles for Traefik to watch and respond to the cluster
+ │     └─whoami.yaml <-- Deployment manifest for `whoami` testing service
+ ├─pyapp <-- All the Python app stuff will go here.
+ ├─meta <-- Holds the CSS and JavaScript for the HTML export.
+ │  └─css
+ │     └─build
+ │        ├─all.min.js
+ │        └─solarized-dark.css
+ └─<<CLUSTER>>.org <-- This org file you're reading now.
+#+end_src
+
+** Start livereload server
+You can serve the exported HTML (=index.html=) in your local browser, and live
+reload it whenever it changes. This will start a new process in the buffer named
+=livereload=:
+
+#+begin_src shell :noweb yes :eval never-export :results none :session livereload
+pip install livereload
+livereload -o0 -t <<SRC_DIR>>/index.html &
+#+end_src
+
+Your browser should automatically open to [[http://127.0.0.1:35729/]] and
+automatically refresh this page.
+
+* Core Config
+** SRC_URL
+This is the source download URL for this document, used in the [[Getting Started][Getting Started]]
+guide above.
+#+name: SRC_URL
+#+begin_src config :noweb yes :eval no
+https://raw.githubusercontent.com/<<FLUX_REPO_ORG>>/<<CLUSTER>>/master/<<CLUSTER>>.org
+#+end_src
+** CLUSTER
+Set =CLUSTER= to be the domain name for your cluster:
+#+name: CLUSTER
+#+begin_src config :noweb yes :eval no
+barrel.rymcg.tech
+#+end_src
+** CLUSTER_SSH_USER
+Set =CLUSTER_SSH_USER= to be the admin SSH account of the cluster (For most
+cloud deployments, this should be =root=, but you can also use an account with
+no-password sudo privileges.
+#+name: CLUSTER_SSH_USER
+#+begin_src config :noweb yes :eval no
+root
+#+end_src
+** KUBE_CONFIG
+  =KUBE_CONFIG= is the local path to the kubectl config file
+  #+name: KUBE_CONFIG
+  #+begin_src config :noweb yes :eval no
+  ${HOME}/.kube/<<CLUSTER>>-config
+  #+end_src
+** kubectl command
+ Since you'll need to specify the kubectl config file each and every time you use
+ =kubectl=, let's create a NoWeb alias for it (=<<kubectl>>=), to use in other
+ code blocks.
+ #+name: kubectl
+ #+begin_src config :noweb yes :eval no
+ kubectl --kubeconfig=<<KUBE_CONFIG>>
+ #+end_src
+
+* Create cluster
+Prepare an Ubuntu or Debian node, setup SSH so that your workstation can access
+the root account with your key file (use =ssh-keygen= and =ssh-copy-id
+root@CLUSTER-DOMAIN= to generate and install key).
+
+Run =apt upgrade= and install =curl= on the server :
+
+#+begin_src shell :noweb yes :eval never-export :results output
+cat << EOF | ssh <<CLUSTER_SSH_USER>>@<<CLUSTER>> /bin/bash
+sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt install -y curl
+EOF
+#+end_src
+
+Install [[https://github.com/alexellis/k3sup#readme][k3sup]], then create the cluster:
+
+#+begin_src shell :noweb yes :eval never-export :results none
+set -e
+mkdir -p ~/.kube
+k3sup install --host <<CLUSTER>> --user <<CLUSTER_SSH_USER>> \
+  --local-path <<KUBE_CONFIG>> --k3s-extra-args '--disable traefik'
+#+end_src
+
+ * Wait a minute or two for the cluster to come up.
+ * Now test to see if you can connect and output node status (keep trying until
+   it says =Ready=):
+
+#+begin_src shell :noweb yes :eval never-export
+kubectl --kubeconfig=<<KUBE_CONFIG>> get nodes
+#+end_src
+
+#+RESULTS:
+| NAME  | STATUS | ROLES  | AGE | VERSION      |
+| k3s-1 | Ready  | master | 65s | v1.19.7+k3s1 |
+
+* kube-system
+=kube-system= is the namespace for running system wide features, mostly network
+related. 
+** Traefik Config
+Edit the variables for the Traefik config:
+*** TRAEFIK_ACME_EMAIL
+  =TRAEFIK_ACME_EMAIL= is the email address to register with the ACME service
+  provider. 
+ #+name: TRAEFIK_ACME_EMAIL
+ #+begin_src config :eval no
+ letsencrypt@enigmacurry.com
+ #+end_src
+*** TRAEFIK_ACME_SERVER
+ =TRAEFIK_ACME_SERVER= is the URL for the Let's Encrypt API (Or other ACME
+ provider). For development purposes, use the staging URL. For production use
+ the URL https://acme-v02.api.letsencrypt.org/directory instead (will produce
+ valid certificates in web browsers).
+
+ #+name: TRAEFIK_ACME_SERVER
+ #+begin_src config :eval no
+ https://acme-staging-v02.api.letsencrypt.org/directory
+ #+end_src
+
+*** TRAEFIK_WHOAMI_DOMAIN
+ [[https://github.com/traefik/whoami][traefik/whoami]] can be deployed to test Traefik functionality. It needs its own
+ domain name to respond to. =TRAEFIK_WHOAMI_DOMAIN= is the subdomain that the
+ whoami service responds to.
+ #+name: TRAEFIK_WHOAMI_DOMAIN
+ #+begin_src config :noweb yes :eval no
+ whoami.<<CLUSTER>>
+ #+end_src
+*** TRAEFIK_VERSION
+ The version number of Traefik to install (eg. =2.3=).
+ #+name: TRAEFIK_VERSION
+ #+begin_src config :eval no
+ v2.3
+ #+end_src
+*** TRAEFIK_LOG_LEVEL
+ =TRAEFIK_LOG_LEVEL= is the filter level on the traefik log.
+ #+name: TRAEFIK_LOG_LEVEL
+ #+begin_src config :eval no
+ INFO
+ #+end_src
+** Sealed Secrets
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/sealed_secrets.org"
+*** SEALED_SECRETS_VERSION
+Choose the [[https://github.com/bitnami-labs/sealed-secrets/releases][release version for Sealed Secrets]]
+#+name: SEALED_SECRETS_VERSION
+#+begin_src config :noweb yes :eval no
+v0.14.1
+#+end_src
+** Traefik Deployment
+#+BEGIN_COMMENT
+Open the Traefik library module in
+=~/git/vendor/enigmacurry/literate-k3s/lib/traefik.org= that you cloned
+previously, as shown in the INCLUDE statement path below. Follow the directions
+and execute the code blocks there, found in =traefik.org=. Know that when you
+open =traefik.org= after having already opened this current file (and hence
+evaluated the code in the =Emacs Local Variables=), that variable references
+like =<<SRC_DIR>>= refer back to /this current file's/ directory, /not/ in
+relation to where =traefik.org= exists. So that, when you run those shell code
+blocks, you will be creating new directories and files in /this current file's/
+directory.
+#+END_COMMENT
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/traefik.org"
+* flux-system
+** Flux Config
+*** FLUX_VERSION
+Choose the [[https://github.com/fluxcd/flux2/releases][Flux2 release version]] :
+#+begin_src config :noweb yes :eval no
+v0.7.7
+#+end_src
+*** FLUX_REPO_NAME
+The name of the git repository containing these org files, and from which flux
+reads. Usually it's the same as =CLUSTER=.
+#+name: FLUX_REPO_NAME
+#+begin_src config :noweb yes :eval no
+<<CLUSTER>>
+#+end_src
+*** FLUX_REPO_ORG
+The name of the owner of the git repository.
+#+name: FLUX_REPO_ORG
+#+begin_src config :noweb yes :eval no
+enigmacurry
+#+end_src
+*** FLUX_REPO_HOST_PORT
+The Hostname and Port number of the git repository remote URL:
+#+name: FLUX_REPO_HOST_PORT
+#+begin_src config :noweb yes :eval no
+github.com:22
+#+end_src
+*** FLUX_GIT_REMOTE
+The SSH Git URL of your remote repository. Note the syntax difference between
+this and the format that GitHub shows on their repository pages: Must begin with
+=ssh://= and the use of a =/= instead of a =:= between the domain and
+organization name. (This might work with other URL forms, like HTTPS, but this
+is the only one that's been tested:)
+#+name: FLUX_GIT_REMOTE
+#+begin_src config :noweb yes :eval no
+ssh://git@<<FLUX_REPO_HOST_PORT>>/<<FLUX_REPO_ORG>>/<<FLUX_REPO_NAME>>.git
+#+end_src
+** Flux Deployment
+#+BEGIN_COMMENT
+Follow the deployment instructions in the Flux library INCLUDE:
+#+END_COMMENT
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/flux.org"
+* COMMENT postgres
+** Postgres Config
+*** POSTGRES_PVC_SIZE
+    How big do you need the Database volume?
+    #+name: POSTGRES_PVC_SIZE
+    #+begin_src config :noweb yes :eval no
+    1Gi
+    #+end_src
+*** POSTGRES_HELM_CHART_VERSION
+    What version of the [[https://github.com/bitnami/charts/tree/master/bitnami/postgresql][PostgreSQL Helm Chart]] do you want to install?
+    #+name: POSTGRES_HELM_CHART_VERSION
+    #+begin_src config :noweb yes :eval no
+    10.1.1
+    #+end_src
+
+*** POSTGRES_DATABASE_NAME
+#+name: POSTGRES_DATABASE_NAME
+#+begin_src config :noweb yes :eval no
+pyapp
+#+end_src
+*** POSTGRES_DATABASE_USER
+#+name: POSTGRES_DATABASE_USER
+#+begin_src config :noweb yes :eval no
+pyapp
+#+end_src
+** Postgres Deployment
+#+BEGIN_COMMENT
+Follow the instructions in the Postgres library INCLUDE for creating a port
+forward from your local workstation to the database:
+#+END_COMMENT
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/postgres.org"
+* LICENSE
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"
+* COMMENT Emacs Local Variables
+This section contains the =Local Variables= that [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html#Specifying-File-Variables][Emacs reads when it loads this
+file]]. This section must be located "no more than 3000 characters from the end of
+the file", so you need to keep this as the very last section of this document.
+This section is excluded from the HTML output because it is tagged with
+=COMMENT=. 
+
+# Local Variables:
+# eval: (progn (load-file "~/git/vendor/enigmacurry/literate-k3s/meta/org-meta.el") (literate-k3s-init))
+# End:
+
+
