@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-17 Wed 14:20 -->
+<!-- 2021-02-17 Wed 14:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>barrel.rymcg.tech</title>
@@ -405,11 +405,8 @@ for the JavaScript code in this tag.
 <h3 id="Introduction"><span class="section-number-3">1.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-These instructions will create a <a href="https://www.python.org">Python</a> web development environment using
-<a href="https://fastapi.tiangolo.com/">FastAPI</a>, <a href="https://www.sqlalchemy.org/">SQLAlchemy</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, and <a href="https://redis.io/">Redis</a>, as well as create a new <a href="https://k3s.io">K3s</a>
-(single-node) cluster from which to host your application, combined with <a href="https://traefik.io/">Traefik</a>
-TLS Ingress, and <a href="https://toolkit.fluxcd.io/">Flux2</a> Continuous Delivery (Kubernetes manifests auto-redeploy
-to the cluster on git push).
+This is the live configuration for EnigmaCurry's personal k3s cluster hosted at
+barrel.rymcg.tech. Initially this will host a <a href="https://github.com/Piwigo/Piwigo">Piwigo</a> image gallery.
 </p>
 
 <p>
@@ -483,7 +480,7 @@ configurable):
 
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #4f97d7;">cd</span> ~/git/clusters/barrel.rymcg.tech
-curl -LO https://raw.githubusercontent.com/enigmacurry/k3s-1.rymcg.tech/master/k3s-1.rymcg.tech.org
+curl -LO https://raw.githubusercontent.com/enigmacurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
 </pre>
 </div>
 
@@ -562,7 +559,7 @@ This is the source download URL for this document, used in the <a href="#Getting
 guide above.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org947625c">https://raw.githubusercontent.com/enigmacurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
+<pre class="src src-config" id="org188c8e7">https://raw.githubusercontent.com/enigmacurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
 </pre>
 </div>
 </div>
@@ -574,7 +571,7 @@ guide above.
 Set <code>CLUSTER</code> to be the domain name for your cluster:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgbac9689">barrel.rymcg.tech
+<pre class="src src-config" id="org42f4902">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -588,7 +585,7 @@ cloud deployments, this should be <code>root</code>, but you can also use an acc
 no-password sudo privileges.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org92585be">root
+<pre class="src src-config" id="orgf6538d7">root
 </pre>
 </div>
 </div>
@@ -600,7 +597,7 @@ no-password sudo privileges.
 <code>KUBE_CONFIG</code> is the local path to the kubectl config file
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org8dde67f">${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="org1a09d1b">${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -614,7 +611,7 @@ Since you'll need to specify the kubectl config file each and every time you use
 code blocks.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org6227dac">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="org3a6d9b4">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -689,7 +686,7 @@ Edit the variables for the Traefik config:
 provider. 
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org879e4f0">letsencrypt@enigmacurry.com
+<pre class="src src-config" id="org1f514e2">letsencrypt@enigmacurry.com
 </pre>
 </div>
 </div>
@@ -705,7 +702,7 @@ valid certificates in web browsers).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-config" id="org5a79690">https://acme-staging-v02.api.letsencrypt.org/directory
+<pre class="src src-config" id="org7fbed07">https://acme-staging-v02.api.letsencrypt.org/directory
 </pre>
 </div>
 </div>
@@ -720,7 +717,7 @@ domain name to respond to. <code>TRAEFIK_WHOAMI_DOMAIN</code> is the subdomain t
 whoami service responds to.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgf352bf9">whoami.barrel.rymcg.tech
+<pre class="src src-config" id="orgced7200">whoami.barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -732,7 +729,7 @@ whoami service responds to.
 The version number of Traefik to install (eg. <code>2.3</code>).
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orga219ec0">v2.3
+<pre class="src src-config" id="orgc950625">v2.3
 </pre>
 </div>
 </div>
@@ -744,7 +741,7 @@ The version number of Traefik to install (eg. <code>2.3</code>).
 <code>TRAEFIK_LOG_LEVEL</code> is the filter level on the traefik log.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org531a530">INFO
+<pre class="src src-config" id="orgff7d25d">INFO
 </pre>
 </div>
 </div>
@@ -768,7 +765,7 @@ repository. Only the cluster can decrypt sealed secrets.
 <h4 id="kube-system%2Fsealed-secrets%2Fkustomization.yaml"><span class="section-number-4">4.2.1</span> kube-system/sealed-secrets/kustomization.yaml</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
-<pre class="src src-yaml" id="orgbabc605"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<pre class="src src-yaml" id="orgb403a9e"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
 <span style="color: #7590db;">resources</span>:
 - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.14.1/controller.yaml
@@ -783,7 +780,7 @@ repository. Only the cluster can decrypt sealed secrets.
 Choose the <a href="https://github.com/bitnami-labs/sealed-secrets/releases">release version for Sealed Secrets</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org3d42750">v0.14.1
+<pre class="src src-config" id="org385ddd1">v0.14.1
 </pre>
 </div>
 </div>
@@ -860,7 +857,7 @@ Test with TLS verification on:
 </div>
 
 <p>
-TLS will not verify until you use the production <a href="#org5a79690">TRAEFIK_ACME_SERVER</a>.
+TLS will not verify until you use the production <a href="#org7fbed07">TRAEFIK_ACME_SERVER</a>.
 </p>
 </div>
 </div>
@@ -1076,7 +1073,7 @@ to direct traffic to any other node.
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 <a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It listens to the
-domain <a href="#orgf352bf9">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
+domain <a href="#orgced7200">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
 </p>
 
 <div class="org-src-container">
@@ -1183,7 +1180,7 @@ The name of the git repository containing these org files, and from which flux
 reads. Usually it's the same as <code>CLUSTER</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org73ca26f">barrel.rymcg.tech
+<pre class="src src-config" id="org3af8079">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -1195,7 +1192,7 @@ reads. Usually it's the same as <code>CLUSTER</code>.
 The name of the owner of the git repository.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgfaf1a2e">enigmacurry
+<pre class="src src-config" id="orgbeed383">enigmacurry
 </pre>
 </div>
 </div>
@@ -1207,7 +1204,7 @@ The name of the owner of the git repository.
 The Hostname and Port number of the git repository remote URL:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org640adaf">github.com:22
+<pre class="src src-config" id="orgc8d4190">github.com:22
 </pre>
 </div>
 </div>
@@ -1223,7 +1220,7 @@ organization name. (This might work with other URL forms, like HTTPS, but this
 is the only one that's been tested:)
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org545785c">ssh://git@github.com:22/enigmacurry/barrel.rymcg.tech.git
+<pre class="src src-config" id="orge42a5fd">ssh://git@github.com:22/enigmacurry/barrel.rymcg.tech.git
 </pre>
 </div>
 </div>
@@ -1277,7 +1274,7 @@ with its state.
 
 <p>
 If using Gitea, click the <code>+</code> icon in the upper right corner to create a <code>New
-Repository</code>. Call the new repository the same as <a href="#org73ca26f">FLUX_REPO_NAME</a>.
+Repository</code>. Call the new repository the same as <a href="#org3af8079">FLUX_REPO_NAME</a>.
 </p>
 
 <p>
@@ -1609,7 +1606,7 @@ along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: EnigmaCurry</p>
-<p class="date">Created: 2021-02-17 Wed 14:20</p>
+<p class="date">Created: 2021-02-17 Wed 14:56</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

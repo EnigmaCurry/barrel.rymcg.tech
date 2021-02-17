@@ -6,11 +6,8 @@
 
 * Getting Started
 ** Introduction
-These instructions will create a [[https://www.python.org][Python]] web development environment using
-[[https://fastapi.tiangolo.com/][FastAPI]], [[https://www.sqlalchemy.org/][SQLAlchemy]], [[https://www.postgresql.org/][PostgreSQL]], and [[https://redis.io/][Redis]], as well as create a new [[https://k3s.io][K3s]]
-(single-node) cluster from which to host your application, combined with [[https://traefik.io/][Traefik]]
-TLS Ingress, and [[https://toolkit.fluxcd.io/][Flux2]] Continuous Delivery (Kubernetes manifests auto-redeploy
-to the cluster on git push).
+This is the live configuration for EnigmaCurry's personal k3s cluster hosted at
+barrel.rymcg.tech. Initially this will host a [[https://github.com/Piwigo/Piwigo][Piwigo]] image gallery.
 
 This is a [[https://github.com/EnigmaCurry/literate-k3s][literate-k3s]] Emacs Org-Babel document, (or you may be reading its
 exported HTML form on the web.) If you are new to this, please read the upstream
@@ -183,8 +180,8 @@ kubectl --kubeconfig=<<KUBE_CONFIG>> get nodes
 #+end_src
 
 #+RESULTS:
-| NAME  | STATUS | ROLES  | AGE | VERSION      |
-| k3s-1 | Ready  | master | 65s | v1.19.7+k3s1 |
+| NAME                    | STATUS | ROLES  | AGE  | VERSION      |
+| barrel-1.dev.rymcg.tech | Ready  | master | 102s | v1.19.7+k3s1 |
 
 * kube-system
 =kube-system= is the namespace for running system wide features, mostly network
