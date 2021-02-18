@@ -266,7 +266,7 @@ reads. Usually it's the same as =CLUSTER=.
 The name of the owner of the git repository.
 #+name: FLUX_REPO_ORG
 #+begin_src config :noweb yes :eval no
-enigmacurry
+EnigmaCurry
 #+end_src
 *** FLUX_REPO_HOST_PORT
 The Hostname and Port number of the git repository remote URL:
