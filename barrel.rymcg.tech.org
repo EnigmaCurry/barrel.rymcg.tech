@@ -51,7 +51,7 @@ you'll see that the =<<SRC_DIR>>= reference makes this part configurable.):
 mkdir -p <<SRC_DIR>>/
 mkdir -p <<SRC_DIR>>/kube-system/{traefik,sealed-secrets}
 mkdir -p <<SRC_DIR>>/flux-system/
-mkdir -p <<SRC_DIR>>/postgres/
+mkdir -p <<SRC_DIR>>/mariadb/
 #+end_src
 
 #+RESULTS:
@@ -289,37 +289,34 @@ ssh://git@<<FLUX_REPO_HOST_PORT>>/<<FLUX_REPO_ORG>>/<<FLUX_REPO_NAME>>.git
 Follow the deployment instructions in the Flux library INCLUDE:
 #+END_COMMENT
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/flux.org"
-* COMMENT postgres
-** Postgres Config
-*** POSTGRES_PVC_SIZE
-    How big do you need the Database volume?
-    #+name: POSTGRES_PVC_SIZE
-    #+begin_src config :noweb yes :eval no
-    1Gi
-    #+end_src
-*** POSTGRES_HELM_CHART_VERSION
-    What version of the [[https://github.com/bitnami/charts/tree/master/bitnami/postgresql][PostgreSQL Helm Chart]] do you want to install?
-    #+name: POSTGRES_HELM_CHART_VERSION
-    #+begin_src config :noweb yes :eval no
-    10.1.1
-    #+end_src
+* Piwigo
+** MariaDB
+*** MariaDB Config
+**** MARIADB_PVC_SIZE
+     How big do you need the Database volume?
+     #+name: MARIADB_PVC_SIZE
+     #+begin_src config :noweb yes :eval no
+     5Gi
+     #+end_src
+**** MARIADB_HELM_CHART_VERSION
+     What version of the [[https://github.com/bitnami/charts/tree/master/bitnami/mariadb][MariaDB Helm Chart]] do you want to install?
+     #+name: MARIADB_HELM_CHART_VERSION
+     #+begin_src config :noweb yes :eval no
+     9.0.1
+     #+end_src
 
-*** POSTGRES_DATABASE_NAME
-#+name: POSTGRES_DATABASE_NAME
-#+begin_src config :noweb yes :eval no
-pyapp
-#+end_src
-*** POSTGRES_DATABASE_USER
-#+name: POSTGRES_DATABASE_USER
-#+begin_src config :noweb yes :eval no
-pyapp
-#+end_src
-** Postgres Deployment
-#+BEGIN_COMMENT
-Follow the instructions in the Postgres library INCLUDE for creating a port
-forward from your local workstation to the database:
-#+END_COMMENT
-#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/postgres.org"
+**** MARIADB_DATABASE_NAME
+     #+name: MARIADB_DATABASE_NAME
+     #+begin_src config :noweb yes :eval no
+     piwigo
+     #+end_src
+**** MARIADB_DATABASE_USER
+     #+name: MARIADB_DATABASE_USER
+     #+begin_src config :noweb yes :eval no
+     piwigo
+     #+end_src
+*** MariaDB Deployment
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/mariadb.org"
 * LICENSE
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"
 * COMMENT Emacs Local Variables
