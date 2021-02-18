@@ -203,7 +203,7 @@ Edit the variables for the Traefik config:
 
  #+name: TRAEFIK_ACME_SERVER
  #+begin_src config :eval no
- https://acme-staging-v02.api.letsencrypt.org/directory
+ https://acme-v02.api.letsencrypt.org/directory
  #+end_src
 
 *** TRAEFIK_WHOAMI_DOMAIN
