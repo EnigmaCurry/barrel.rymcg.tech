@@ -49,9 +49,9 @@ you'll see that the =<<SRC_DIR>>= reference makes this part configurable.):
 
 #+begin_src shell :noweb yes :eval never-export
 mkdir -p <<SRC_DIR>>/
-mkdir -p <<SRC_DIR>>/kube-system/{traefik,sealed-secrets}
+mkdir -p <<SRC_DIR>>/kube-system/{traefik,sealed-secrets}/
 mkdir -p <<SRC_DIR>>/flux-system/
-mkdir -p <<SRC_DIR>>/mariadb/
+mkdir -p <<SRC_DIR>>/piwigo/mariadb/
 #+end_src
 
 #+RESULTS:
@@ -290,33 +290,7 @@ Follow the deployment instructions in the Flux library INCLUDE:
 #+END_COMMENT
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/flux.org"
 * Piwigo
-** MariaDB
-*** MariaDB Config
-**** MARIADB_PVC_SIZE
-     How big do you need the Database volume?
-     #+name: MARIADB_PVC_SIZE
-     #+begin_src config :noweb yes :eval no
-     5Gi
-     #+end_src
-**** MARIADB_HELM_CHART_VERSION
-     What version of the [[https://github.com/bitnami/charts/tree/master/bitnami/mariadb][MariaDB Helm Chart]] do you want to install?
-     #+name: MARIADB_HELM_CHART_VERSION
-     #+begin_src config :noweb yes :eval no
-     9.0.1
-     #+end_src
-
-**** MARIADB_DATABASE_NAME
-     #+name: MARIADB_DATABASE_NAME
-     #+begin_src config :noweb yes :eval no
-     piwigo
-     #+end_src
-**** MARIADB_DATABASE_USER
-     #+name: MARIADB_DATABASE_USER
-     #+begin_src config :noweb yes :eval no
-     piwigo
-     #+end_src
-*** MariaDB Deployment
-#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/mariadb.org"
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/piwigo.org"
 * LICENSE
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"
 * COMMENT Emacs Local Variables
