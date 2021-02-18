@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-18 Thu 13:01 -->
+<!-- 2021-02-18 Thu 13:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>barrel.rymcg.tech</title>
@@ -579,7 +579,7 @@ This is the source download URL for this document, used in the <a href="#Getting
 guide above.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgbbbac8e">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
+<pre class="src src-config" id="orgc6b77a3">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
 </pre>
 </div>
 </div>
@@ -591,7 +591,7 @@ guide above.
 Set <code>CLUSTER</code> to be the domain name for your cluster:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org9f7484c">barrel.rymcg.tech
+<pre class="src src-config" id="org0bfe41b">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -605,7 +605,7 @@ cloud deployments, this should be <code>root</code>, but you can also use an acc
 no-password sudo privileges.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orge343819">root
+<pre class="src src-config" id="orgb3ad5d1">root
 </pre>
 </div>
 </div>
@@ -617,7 +617,7 @@ no-password sudo privileges.
 <code>KUBE_CONFIG</code> is the local path to the kubectl config file
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgf058bc8">${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="orgfd7da0f">${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -631,7 +631,7 @@ Since you'll need to specify the kubectl config file each and every time you use
 code blocks.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org4c12bdc">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="org7ecfdeb">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -706,7 +706,7 @@ Edit the variables for the Traefik config:
 provider. 
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org3585c42">letsencrypt@enigmacurry.com
+<pre class="src src-config" id="orgcc9b83a">letsencrypt@enigmacurry.com
 </pre>
 </div>
 </div>
@@ -722,7 +722,7 @@ valid certificates in web browsers).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-config" id="org67d6338">https://acme-staging-v02.api.letsencrypt.org/directory
+<pre class="src src-config" id="org7d7530c">https://acme-staging-v02.api.letsencrypt.org/directory
 </pre>
 </div>
 </div>
@@ -737,7 +737,7 @@ domain name to respond to. <code>TRAEFIK_WHOAMI_DOMAIN</code> is the subdomain t
 whoami service responds to.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org690cc02">whoami.barrel.rymcg.tech
+<pre class="src src-config" id="org2b9b749">whoami.barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -749,7 +749,7 @@ whoami service responds to.
 The version number of Traefik to install (eg. <code>2.3</code>).
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgbaf82ec">v2.3
+<pre class="src src-config" id="org3ce7d16">v2.3
 </pre>
 </div>
 </div>
@@ -761,7 +761,7 @@ The version number of Traefik to install (eg. <code>2.3</code>).
 <code>TRAEFIK_LOG_LEVEL</code> is the filter level on the traefik log.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgfd1f2db">INFO
+<pre class="src src-config" id="org57c8fd2">INFO
 </pre>
 </div>
 </div>
@@ -785,7 +785,7 @@ repository. Only the cluster can decrypt sealed secrets.
 <h4 id="kube-system%2Fsealed-secrets%2Fkustomization.yaml"><span class="section-number-4">4.2.1</span> kube-system/sealed-secrets/kustomization.yaml</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
-<pre class="src src-yaml" id="org56418e6"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<pre class="src src-yaml" id="orge597b72"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
 <span style="color: #7590db;">resources</span>:
 - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.14.1/controller.yaml
@@ -800,7 +800,7 @@ repository. Only the cluster can decrypt sealed secrets.
 Choose the <a href="https://github.com/bitnami-labs/sealed-secrets/releases">release version for Sealed Secrets</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org9e5892f">v0.14.1
+<pre class="src src-config" id="org530dcf8">v0.14.1
 </pre>
 </div>
 </div>
@@ -877,7 +877,7 @@ Test with TLS verification on:
 </div>
 
 <p>
-TLS will not verify until you use the production <a href="#org67d6338">TRAEFIK_ACME_SERVER</a>.
+TLS will not verify until you use the production <a href="#org7d7530c">TRAEFIK_ACME_SERVER</a>.
 </p>
 </div>
 </div>
@@ -1093,7 +1093,7 @@ to direct traffic to any other node.
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 <a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It listens to the
-domain <a href="#org690cc02">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
+domain <a href="#org2b9b749">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
 </p>
 
 <div class="org-src-container">
@@ -1200,7 +1200,7 @@ The name of the git repository containing these org files, and from which flux
 reads. Usually it's the same as <code>CLUSTER</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org5b999c2">barrel.rymcg.tech
+<pre class="src src-config" id="org9eef2fa">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -1212,7 +1212,7 @@ reads. Usually it's the same as <code>CLUSTER</code>.
 The name of the owner of the git repository.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org710c679">EnigmaCurry
+<pre class="src src-config" id="orgdafaf71">EnigmaCurry
 </pre>
 </div>
 </div>
@@ -1224,7 +1224,7 @@ The name of the owner of the git repository.
 The Hostname and Port number of the git repository remote URL:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgdfde8ae">github.com:22
+<pre class="src src-config" id="orgcb2453d">github.com:22
 </pre>
 </div>
 </div>
@@ -1240,7 +1240,7 @@ organization name. (This might work with other URL forms, like HTTPS, but this
 is the only one that's been tested:)
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgb267bb5">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
+<pre class="src src-config" id="orgbbbd71b">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
 </pre>
 </div>
 </div>
@@ -1294,7 +1294,7 @@ with its state.
 
 <p>
 If using Gitea, click the <code>+</code> icon in the upper right corner to create a <code>New
-Repository</code>. Call the new repository the same as <a href="#org5b999c2">FLUX_REPO_NAME</a>.
+Repository</code>. Call the new repository the same as <a href="#org9eef2fa">FLUX_REPO_NAME</a>.
 </p>
 
 <p>
@@ -1546,7 +1546,7 @@ And in another minute or so, the namespace should be gone:
 <h4 id="PIWIGO_DOMAIN"><span class="section-number-4">6.1.1</span> PIWIGO_DOMAIN</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <div class="org-src-container">
-<pre class="src src-config" id="org4309b32">fractals.enigmacurry.com
+<pre class="src src-config" id="org06a5936">fractals.enigmacurry.com
 </pre>
 </div>
 </div>
@@ -1597,7 +1597,7 @@ Now you can go to the PIWIGO_DOMAIN in your browser and configure the database:
 How big do you need the Database volume?
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgd774690">5Gi
+<pre class="src src-config" id="orga83e444">5Gi
 </pre>
 </div>
 </div>
@@ -1608,7 +1608,7 @@ How big do you need the Database volume?
 What version of the <a href="https://github.com/bitnami/charts/tree/master/bitnami/mariadb">MariaDB Helm Chart</a> do you want to install?
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgb3082ee">9.0.1
+<pre class="src src-config" id="org3ffd210">9.0.1
 </pre>
 </div>
 </div>
@@ -1616,7 +1616,7 @@ What version of the <a href="https://github.com/bitnami/charts/tree/master/bitna
 <li><a id="PIWIGO_MARIADB_DATABASE_NAME"></a>PIWIGO_MARIADB_DATABASE_NAME<br />
 <div class="outline-text-5" id="text-6-2-2-3">
 <div class="org-src-container">
-<pre class="src src-config" id="orgaf3879c">piwigo
+<pre class="src src-config" id="org6156888">piwigo
 </pre>
 </div>
 </div>
@@ -1624,7 +1624,7 @@ What version of the <a href="https://github.com/bitnami/charts/tree/master/bitna
 <li><a id="PIWIGO_MARIADB_DATABASE_USER"></a>PIWIGO_MARIADB_DATABASE_USER<br />
 <div class="outline-text-5" id="text-6-2-2-4">
 <div class="org-src-container">
-<pre class="src src-config" id="org189b640">piwigo
+<pre class="src src-config" id="org17f58bd">piwigo
 </pre>
 </div>
 </div>
@@ -1896,7 +1896,7 @@ along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: EnigmaCurry</p>
-<p class="date">Created: 2021-02-18 Thu 13:01</p>
+<p class="date">Created: 2021-02-18 Thu 13:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
