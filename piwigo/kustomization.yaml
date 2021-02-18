@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - config.pvc.yaml
-- deployment.yaml
+- statefulset.yaml
 - service.yaml
 - mariadb/helm.release.yaml

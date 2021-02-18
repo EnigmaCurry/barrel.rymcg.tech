@@ -1,12 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: piwigo
   namespace: piwigo
   labels:
     app: piwigo
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: piwigo
