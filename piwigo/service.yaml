@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: piwigo
+  namespace: kube-system
+spec:
+  ports:
+  - name: web
+    port: 80
+    protocol: TCP
+  selector:
+    app: piwigo
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: piwigo
+  namespace: kube-system
+spec:
+  weighted:
+    services:
+      - name: piwigo
+        weight: 1
+        port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: piwigo
+  namespace: kube-system
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`fractals.enigmacurry.com`)
+    services:
+    - name: piwigo
+      port: 80
+  tls:
+    certResolver: default

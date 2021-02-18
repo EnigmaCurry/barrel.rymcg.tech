@@ -290,6 +290,13 @@ Follow the deployment instructions in the Flux library INCLUDE:
 #+END_COMMENT
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/flux.org"
 * Piwigo
+** Piwigo Config
+*** PIWIGO_DOMAIN
+    #+name: PIWIGO_DOMAIN
+    #+begin_src config :noweb yes :eval no
+    fractals.enigmacurry.com
+    #+end_src
+** Piwigo Deployment
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/piwigo.org"
 * LICENSE
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"

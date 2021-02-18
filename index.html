@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-18 Thu 11:20 -->
+<!-- 2021-02-18 Thu 12:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>barrel.rymcg.tech</title>
@@ -394,18 +394,21 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#Piwigo">6. Piwigo</a>
 <ul>
-<li><a href="#Piwigo%20attached%20MariaDB%20service">6.1. Piwigo attached MariaDB service</a>
+<li><a href="#Piwigo%20Config">6.1. Piwigo Config</a>
 <ul>
-<li><a href="#PIWIGO_MARIADB_PVC_SIZE">6.1.1. PIWIGO_MARIADB_PVC_SIZE</a></li>
-<li><a href="#PIWIGO_MARIADB_HELM_CHART_VERSION">6.1.2. PIWIGO_MARIADB_HELM_CHART_VERSION</a></li>
-<li><a href="#PIWIGO_MARIADB_DATABASE_NAME">6.1.3. PIWIGO_MARIADB_DATABASE_NAME</a></li>
-<li><a href="#PIWIGO_MARIADB_DATABASE_USER">6.1.4. PIWIGO_MARIADB_DATABASE_USER</a></li>
-<li><a href="#piwigo%2Fmariadb%2Fhelm.release.yaml">6.1.5. piwigo/mariadb/helm.release.yaml</a></li>
+<li><a href="#PIWIGO_DOMAIN">6.1.1. PIWIGO_DOMAIN</a></li>
 </ul>
 </li>
-<li><a href="#piwigo%2Fkustomization.yaml">6.2. piwigo/kustomization.yaml</a></li>
-<li><a href="#piwigo%2Fnamespace.yaml">6.3. piwigo/namespace.yaml</a></li>
-<li><a href="#piwigo%2Fdeployment.yaml">6.4. piwigo/deployment.yaml</a></li>
+<li><a href="#Piwigo%20Deployment">6.2. Piwigo Deployment</a>
+<ul>
+<li><a href="#Piwigo%20attached%20MariaDB%20service">6.2.1. Piwigo attached MariaDB service</a></li>
+<li><a href="#piwigo%2Fkustomization.yaml">6.2.2. piwigo/kustomization.yaml</a></li>
+<li><a href="#piwigo%2Fnamespace.yaml">6.2.3. piwigo/namespace.yaml</a></li>
+<li><a href="#piwigo%2Fdeployment.yaml">6.2.4. piwigo/deployment.yaml</a></li>
+<li><a href="#piwigo%2Fservice.yaml">6.2.5. piwigo/service.yaml</a></li>
+<li><a href="#piwigo%2Fconfigmap.yaml">6.2.6. <span class="todo TODO">TODO</span> piwigo/configmap.yaml</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#LICENSE">7. LICENSE</a></li>
@@ -575,7 +578,7 @@ This is the source download URL for this document, used in the <a href="#Getting
 guide above.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org68f3d33">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
+<pre class="src src-config" id="org6769620">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
 </pre>
 </div>
 </div>
@@ -587,7 +590,7 @@ guide above.
 Set <code>CLUSTER</code> to be the domain name for your cluster:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org8ebf098">barrel.rymcg.tech
+<pre class="src src-config" id="org3545656">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -601,7 +604,7 @@ cloud deployments, this should be <code>root</code>, but you can also use an acc
 no-password sudo privileges.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgf438e34">root
+<pre class="src src-config" id="orgcbb32b2">root
 </pre>
 </div>
 </div>
@@ -613,7 +616,7 @@ no-password sudo privileges.
 <code>KUBE_CONFIG</code> is the local path to the kubectl config file
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org12d62ef">${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="orge34a317">${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -627,7 +630,7 @@ Since you'll need to specify the kubectl config file each and every time you use
 code blocks.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org48fb1e1">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="orgaf649d5">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -702,7 +705,7 @@ Edit the variables for the Traefik config:
 provider. 
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orga6873d2">letsencrypt@enigmacurry.com
+<pre class="src src-config" id="org83ecb24">letsencrypt@enigmacurry.com
 </pre>
 </div>
 </div>
@@ -718,7 +721,7 @@ valid certificates in web browsers).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-config" id="org0375a4e">https://acme-staging-v02.api.letsencrypt.org/directory
+<pre class="src src-config" id="orgebdf9cc">https://acme-staging-v02.api.letsencrypt.org/directory
 </pre>
 </div>
 </div>
@@ -733,7 +736,7 @@ domain name to respond to. <code>TRAEFIK_WHOAMI_DOMAIN</code> is the subdomain t
 whoami service responds to.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org2275347">whoami.barrel.rymcg.tech
+<pre class="src src-config" id="org74a8f0e">whoami.barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -745,7 +748,7 @@ whoami service responds to.
 The version number of Traefik to install (eg. <code>2.3</code>).
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgb536f03">v2.3
+<pre class="src src-config" id="org46a9beb">v2.3
 </pre>
 </div>
 </div>
@@ -757,7 +760,7 @@ The version number of Traefik to install (eg. <code>2.3</code>).
 <code>TRAEFIK_LOG_LEVEL</code> is the filter level on the traefik log.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org7aeb673">INFO
+<pre class="src src-config" id="org175068a">INFO
 </pre>
 </div>
 </div>
@@ -781,7 +784,7 @@ repository. Only the cluster can decrypt sealed secrets.
 <h4 id="kube-system%2Fsealed-secrets%2Fkustomization.yaml"><span class="section-number-4">4.2.1</span> kube-system/sealed-secrets/kustomization.yaml</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
-<pre class="src src-yaml" id="org271e809"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<pre class="src src-yaml" id="org1a4d26e"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
 <span style="color: #7590db;">resources</span>:
 - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.14.1/controller.yaml
@@ -796,7 +799,7 @@ repository. Only the cluster can decrypt sealed secrets.
 Choose the <a href="https://github.com/bitnami-labs/sealed-secrets/releases">release version for Sealed Secrets</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org26d5f9f">v0.14.1
+<pre class="src src-config" id="org00a3ac2">v0.14.1
 </pre>
 </div>
 </div>
@@ -873,7 +876,7 @@ Test with TLS verification on:
 </div>
 
 <p>
-TLS will not verify until you use the production <a href="#org0375a4e">TRAEFIK_ACME_SERVER</a>.
+TLS will not verify until you use the production <a href="#orgebdf9cc">TRAEFIK_ACME_SERVER</a>.
 </p>
 </div>
 </div>
@@ -1089,7 +1092,7 @@ to direct traffic to any other node.
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 <a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It listens to the
-domain <a href="#org2275347">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
+domain <a href="#org74a8f0e">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
 </p>
 
 <div class="org-src-container">
@@ -1196,7 +1199,7 @@ The name of the git repository containing these org files, and from which flux
 reads. Usually it's the same as <code>CLUSTER</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org9a10b4f">barrel.rymcg.tech
+<pre class="src src-config" id="orgb7d6628">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -1208,7 +1211,7 @@ reads. Usually it's the same as <code>CLUSTER</code>.
 The name of the owner of the git repository.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org1008f34">EnigmaCurry
+<pre class="src src-config" id="orgb7821db">EnigmaCurry
 </pre>
 </div>
 </div>
@@ -1220,7 +1223,7 @@ The name of the owner of the git repository.
 The Hostname and Port number of the git repository remote URL:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org1bb7dd8">github.com:22
+<pre class="src src-config" id="org03f9b8b">github.com:22
 </pre>
 </div>
 </div>
@@ -1236,7 +1239,7 @@ organization name. (This might work with other URL forms, like HTTPS, but this
 is the only one that's been tested:)
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org467e7ac">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
+<pre class="src src-config" id="org49f2537">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
 </pre>
 </div>
 </div>
@@ -1290,7 +1293,7 @@ with its state.
 
 <p>
 If using Gitea, click the <code>+</code> icon in the upper right corner to create a <code>New
-Repository</code>. Call the new repository the same as <a href="#org9a10b4f">FLUX_REPO_NAME</a>.
+Repository</code>. Call the new repository the same as <a href="#orgb7d6628">FLUX_REPO_NAME</a>.
 </p>
 
 <p>
@@ -1534,55 +1537,69 @@ And in another minute or so, the namespace should be gone:
 <h2 id="Piwigo"><span class="section-number-2">6</span> Piwigo</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-Piwigo%20attached%20MariaDB%20service" class="outline-3">
-<h3 id="Piwigo%20attached%20MariaDB%20service"><span class="section-number-3">6.1</span> Piwigo attached MariaDB service</h3>
+<div id="outline-container-Piwigo%20Config" class="outline-3">
+<h3 id="Piwigo%20Config"><span class="section-number-3">6.1</span> Piwigo Config</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-PIWIGO_MARIADB_PVC_SIZE" class="outline-4">
-<h4 id="PIWIGO_MARIADB_PVC_SIZE"><span class="section-number-4">6.1.1</span> PIWIGO_MARIADB_PVC_SIZE</h4>
+<div id="outline-container-PIWIGO_DOMAIN" class="outline-4">
+<h4 id="PIWIGO_DOMAIN"><span class="section-number-4">6.1.1</span> PIWIGO_DOMAIN</h4>
 <div class="outline-text-4" id="text-6-1-1">
+<div class="org-src-container">
+<pre class="src src-config" id="org24a6fae">fractals.enigmacurry.com
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-Piwigo%20Deployment" class="outline-3">
+<h3 id="Piwigo%20Deployment"><span class="section-number-3">6.2</span> Piwigo Deployment</h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+<div id="outline-container-Piwigo%20attached%20MariaDB%20service" class="outline-4">
+<h4 id="Piwigo%20attached%20MariaDB%20service"><span class="section-number-4">6.2.1</span> Piwigo attached MariaDB service</h4>
+<div class="outline-text-4" id="text-6-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="PIWIGO_MARIADB_PVC_SIZE"></a>PIWIGO_MARIADB_PVC_SIZE<br />
+<div class="outline-text-5" id="text-6-2-1-1">
 <p>
 How big do you need the Database volume?
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgb5c1c14">5Gi
+<pre class="src src-config" id="org170a6de">5Gi
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_HELM_CHART_VERSION" class="outline-4">
-<h4 id="PIWIGO_MARIADB_HELM_CHART_VERSION"><span class="section-number-4">6.1.2</span> PIWIGO_MARIADB_HELM_CHART_VERSION</h4>
-<div class="outline-text-4" id="text-6-1-2">
+</li>
+<li><a id="PIWIGO_MARIADB_HELM_CHART_VERSION"></a>PIWIGO_MARIADB_HELM_CHART_VERSION<br />
+<div class="outline-text-5" id="text-6-2-1-2">
 <p>
 What version of the <a href="https://github.com/bitnami/charts/tree/master/bitnami/mariadb">MariaDB Helm Chart</a> do you want to install?
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgce87818">9.0.1
+<pre class="src src-config" id="org52e9bdd">9.0.1
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_DATABASE_NAME" class="outline-4">
-<h4 id="PIWIGO_MARIADB_DATABASE_NAME"><span class="section-number-4">6.1.3</span> PIWIGO_MARIADB_DATABASE_NAME</h4>
-<div class="outline-text-4" id="text-6-1-3">
+</li>
+<li><a id="PIWIGO_MARIADB_DATABASE_NAME"></a>PIWIGO_MARIADB_DATABASE_NAME<br />
+<div class="outline-text-5" id="text-6-2-1-3">
 <div class="org-src-container">
-<pre class="src src-config" id="orgec3eb32">piwigo
+<pre class="src src-config" id="orgbd627ab">piwigo
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_DATABASE_USER" class="outline-4">
-<h4 id="PIWIGO_MARIADB_DATABASE_USER"><span class="section-number-4">6.1.4</span> PIWIGO_MARIADB_DATABASE_USER</h4>
-<div class="outline-text-4" id="text-6-1-4">
+</li>
+<li><a id="PIWIGO_MARIADB_DATABASE_USER"></a>PIWIGO_MARIADB_DATABASE_USER<br />
+<div class="outline-text-5" id="text-6-2-1-4">
 <div class="org-src-container">
-<pre class="src src-config" id="org2cd91d6">piwigo
+<pre class="src src-config" id="org4779ebf">piwigo
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-piwigo%2Fmariadb%2Fhelm.release.yaml" class="outline-4">
-<h4 id="piwigo%2Fmariadb%2Fhelm.release.yaml"><span class="section-number-4">6.1.5</span> piwigo/mariadb/helm.release.yaml</h4>
-<div class="outline-text-4" id="text-6-1-5">
+</li>
+<li><a id="piwigo%2Fmariadb%2Fhelm.release.yaml"></a>piwigo/mariadb/helm.release.yaml<br />
+<div class="outline-text-5" id="text-6-2-1-5">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: helm.toolkit.fluxcd.io/v2beta1
 <span style="color: #7590db;">kind</span>: HelmRelease
@@ -1609,26 +1626,28 @@ What version of the <a href="https://github.com/bitnami/charts/tree/master/bitna
 </pre>
 </div>
 </div>
-</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-piwigo%2Fkustomization.yaml" class="outline-3">
-<h3 id="piwigo%2Fkustomization.yaml"><span class="section-number-3">6.2</span> piwigo/kustomization.yaml</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-piwigo%2Fkustomization.yaml" class="outline-4">
+<h4 id="piwigo%2Fkustomization.yaml"><span class="section-number-4">6.2.2</span> piwigo/kustomization.yaml</h4>
+<div class="outline-text-4" id="text-6-2-2">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
 <span style="color: #7590db;">resources</span>:
 - namespace.yaml
 - deployment.yaml
+- service.yaml
 - mariadb/helm.release.yaml
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-piwigo%2Fnamespace.yaml" class="outline-3">
-<h3 id="piwigo%2Fnamespace.yaml"><span class="section-number-3">6.3</span> piwigo/namespace.yaml</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-piwigo%2Fnamespace.yaml" class="outline-4">
+<h4 id="piwigo%2Fnamespace.yaml"><span class="section-number-4">6.2.3</span> piwigo/namespace.yaml</h4>
+<div class="outline-text-4" id="text-6-2-3">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
 <span style="color: #7590db;">kind</span>: Namespace
@@ -1638,12 +1657,116 @@ What version of the <a href="https://github.com/bitnami/charts/tree/master/bitna
 </div>
 </div>
 </div>
-<div id="outline-container-piwigo%2Fdeployment.yaml" class="outline-3">
-<h3 id="piwigo%2Fdeployment.yaml"><span class="section-number-3">6.4</span> piwigo/deployment.yaml</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-piwigo%2Fdeployment.yaml" class="outline-4">
+<h4 id="piwigo%2Fdeployment.yaml"><span class="section-number-4">6.2.4</span> piwigo/deployment.yaml</h4>
+<div class="outline-text-4" id="text-6-2-4">
 <div class="org-src-container">
-<pre class="src src-yaml">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: apps/v1
+<span style="color: #7590db;">kind</span>: Deployment
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo
+  <span style="color: #7590db;">labels</span>:
+    <span style="color: #7590db;">app</span>: piwigo
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">replicas</span>: 1
+  <span style="color: #7590db;">selector</span>:
+    <span style="color: #7590db;">matchLabels</span>:
+      <span style="color: #7590db;">app</span>: piwigo
+  <span style="color: #7590db;">template</span>:
+    <span style="color: #7590db;">metadata</span>:
+      <span style="color: #7590db;">labels</span>:
+        <span style="color: #7590db;">app</span>: piwigo
+    <span style="color: #7590db;">spec</span>:
+      <span style="color: #7590db;">containers</span>:
+      - <span style="color: #7590db;">name</span>: piwigo
+        <span style="color: #7590db;">image</span>: ghcr.io/linuxserver/piwigo
+        <span style="color: #7590db;">ports</span>:
+        - <span style="color: #7590db;">containerPort</span>: 80
+        <span style="color: #7590db;">env</span>:
+        - <span style="color: #7590db;">name</span>: PUID
+          <span style="color: #7590db;">value</span>: 1000
+        - <span style="color: #7590db;">name</span>: PGID
+          <span style="color: #7590db;">value</span>: 1000
+        - <span style="color: #7590db;">name</span>: TZ
+          <span style="color: #7590db;">value</span>: America/Los_Angeles
+      <span style="color: #2aa1ae; background-color: #292e34;">#   </span><span style="color: #2aa1ae; background-color: #292e34;">volumeMounts:</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">#   </span><span style="color: #2aa1ae; background-color: #292e34;">- name: config</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">mountPath: /config</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">readOnly: true</span>
+      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">volumes:</span>
+      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">- name: config</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">#   </span><span style="color: #2aa1ae; background-color: #292e34;">configMap:</span>
+      <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">name: piwigo</span>
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-piwigo%2Fservice.yaml" class="outline-4">
+<h4 id="piwigo%2Fservice.yaml"><span class="section-number-4">6.2.5</span> piwigo/service.yaml</h4>
+<div class="outline-text-4" id="text-6-2-5">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">kind</span>: Service
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">ports</span>:
+  - <span style="color: #7590db;">name</span>: web
+    <span style="color: #7590db;">port</span>: 80
+    <span style="color: #7590db;">protocol</span>: TCP
+  <span style="color: #7590db;">selector</span>:
+    <span style="color: #7590db;">app</span>: piwigo
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color: #7590db;">kind</span>: TraefikService
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo
+  <span style="color: #7590db;">namespace</span>: kube-system
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">weighted</span>:
+    <span style="color: #7590db;">services</span>:
+      - <span style="color: #7590db;">name</span>: piwigo
+        <span style="color: #7590db;">weight</span>: 1
+        <span style="color: #7590db;">port</span>: 80
+<span style="color: #2aa1ae; background-color: #292e34;">---</span>
+<span style="color: #7590db;">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color: #7590db;">kind</span>: IngressRoute
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo
+  <span style="color: #7590db;">namespace</span>: kube-system
+  <span style="color: #7590db;">annotations</span>:
+    <span style="color: #7590db;">traefik.ingress.kubernetes.io/router.entrypoints</span>: websecure
+    <span style="color: #7590db;">traefik.ingress.kubernetes.io/router.tls</span>: <span style="color: #2d9574;">"true"</span>
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">entryPoints</span>:
+  - websecure
+  <span style="color: #7590db;">routes</span>:
+  - <span style="color: #7590db;">kind</span>: Rule
+    <span style="color: #7590db;">match</span>: Host(`fractals.enigmacurry.com`)
+    <span style="color: #7590db;">services</span>:
+    - <span style="color: #7590db;">name</span>: piwigo
+      <span style="color: #7590db;">port</span>: 80
+  <span style="color: #7590db;">tls</span>:
+    <span style="color: #7590db;">certResolver</span>: default
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-piwigo%2Fconfigmap.yaml" class="outline-4">
+<h4 id="piwigo%2Fconfigmap.yaml"><span class="section-number-4">6.2.6</span> <span class="todo TODO">TODO</span> piwigo/configmap.yaml</h4>
+<div class="outline-text-4" id="text-6-2-6">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">kind</span>: ConfigMap
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo
+<span style="color: #7590db;">data</span>:
+  <span style="color: #7590db;">config.inc.php</span>: |
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #cc9393;">TODO</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1740,7 +1863,7 @@ along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: EnigmaCurry</p>
-<p class="date">Created: 2021-02-18 Thu 11:20</p>
+<p class="date">Created: 2021-02-18 Thu 12:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

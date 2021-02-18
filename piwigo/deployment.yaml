@@ -1,1 +1,36 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piwigo
+  labels:
+    app: piwigo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: piwigo
+  template:
+    metadata:
+      labels:
+        app: piwigo
+    spec:
+      containers:
+      - name: piwigo
+        image: ghcr.io/linuxserver/piwigo
+        ports:
+        - containerPort: 80
+        env:
+        - name: PUID
+          value: 1000
+        - name: PGID
+          value: 1000
+        - name: TZ
+          value: America/Los_Angeles
+      #   volumeMounts:
+      #   - name: config
+      #     mountPath: /config
+      #     readOnly: true
+      # volumes:
+      # - name: config
+      #   configMap:
+      #     name: piwigo
