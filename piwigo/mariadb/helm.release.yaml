@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bitnami
   interval: 5m0s
-  targetNamespace: mariadb
+  targetNamespace: piwigo
   values:
     primary:
       persistence:
