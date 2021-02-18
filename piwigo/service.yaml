@@ -36,7 +36,7 @@ spec:
   - websecure
   routes:
   - kind: Rule
-    match: Host(`fractals.enigmacurry.com`)
+    match: Host(`gallery.enigmacurry.com`)
     services:
     - name: piwigo
       port: 80
