@@ -28,9 +28,9 @@ spec:
         - name: TZ
           value: "America/Los_Angeles"
         volumeMounts:
-        - name: config
+        - name: data
           mountPath: /config
       volumes:
-      - name: config
+      - name: data
         persistentVolumeClaim:
-          claimName: piwigo-config
+          claimName: piwigo-data
