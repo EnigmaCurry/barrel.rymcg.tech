@@ -54,7 +54,7 @@ spec:
               name: piwigo-s3-backup
               key: S3_SECRET_ACCESS_KEY
         volumeMounts:
-          - name: piwigo-data
+          - name: data
             mountPath: /data
       volumes:
       - name: data
