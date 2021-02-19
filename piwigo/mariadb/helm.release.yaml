@@ -25,7 +25,7 @@ spec:
       extraVolumes:
       - name: mariadb-backups
         persistentVolumeClaim:
-          claimName: piwigo-mariadb-backups
+          claimName: mariadb-backups
       sidecars:
       - name: mariadb-backups
         image: woolfg/mysql-backup-sidecar:v0.3.1-mariadb-10.4

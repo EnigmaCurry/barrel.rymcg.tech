@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: piwigo-mariadb-backups
+  name: mariadb-backups
   namespace: piwigo
 spec:
   accessModes:
