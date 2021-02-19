@@ -290,14 +290,14 @@ Follow the deployment instructions in the Flux library INCLUDE:
 #+END_COMMENT
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/flux.org"
 * Piwigo
+#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/piwigo.org"
 ** Piwigo Config
 *** PIWIGO_DOMAIN
-    #+name: PIWIGO_DOMAIN
-    #+begin_src config :noweb yes :eval no
-    gallery.enigmacurry.com
-    #+end_src
-** Piwigo Deployment
-#+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/lib/piwigo.org"
+   This is the domain name for the image gallery:
+   #+name: PIWIGO_DOMAIN
+   #+begin_src config :noweb yes :eval no
+   gallery.enigmacurry.com
+   #+end_src
 * LICENSE
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"
 * COMMENT Emacs Local Variables
