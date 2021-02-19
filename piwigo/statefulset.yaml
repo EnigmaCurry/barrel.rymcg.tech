@@ -26,7 +26,7 @@ spec:
         - name: PGID
           value: "1000"
         - name: TZ
-          value: "America/Los_Angeles"
+          value: "Etc/UTC"
         volumeMounts:
         - name: data
           mountPath: /config
