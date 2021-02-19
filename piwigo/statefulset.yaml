@@ -31,7 +31,7 @@ spec:
         - name: data
           mountPath: /config
       - name: piwigo-s3-backup
-        image: 
+        image: lobaro/restic-backup-docker:1.2-0.9.4
         env:
         - name: RESTIC_REPOSITORY
           valueFrom:
