@@ -16,13 +16,13 @@ spec:
   targetNamespace: piwigo
   valuesFrom: 
   - kind: Secret
-      name: mariadb
-      valuesKey: mariadb-root-password
-      targetPath: auth.rootPassword
+    name: mariadb
+    valuesKey: mariadb-root-password
+    targetPath: auth.rootPassword
   - kind: Secret
-      name: mariadb
-      valuesKey: mariadb-password
-      targetPath: auth.password
+    name: mariadb
+    valuesKey: mariadb-password
+    targetPath: auth.password
   values:
     auth:
       username: piwigo
