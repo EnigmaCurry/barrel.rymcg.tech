@@ -45,7 +45,7 @@ spec:
               key: mariadb-root-password
         volumeMounts:
         - name: data
-          mountPath: /var/lib/mysql
+          mountPath: /bitnami/mariadb
         - name: mariadb-backups
           mountPath: /backup
       - name: mariadb-s3-upload
