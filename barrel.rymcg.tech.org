@@ -141,9 +141,12 @@ root
   ${HOME}/.kube/<<CLUSTER>>-config
   #+end_src
 ** kubectl command
- Since you'll need to specify the kubectl config file each and every time you use
- =kubectl=, let's create a NoWeb alias for it (=<<kubectl>>=), to use in other
- code blocks.
+ In order to interact with your cluster from your workstation, you will need to
+ [[https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-using-native-package-management][install the kubectl client]] (Arch Linux: =pacman -S kubectl=). 
+
+ Since you'll need to specify the kubectl config file each and every time you
+ use =kubectl=, let's create a NoWeb alias for it called =<<kubectl>>=, to use
+ in other code blocks:
  #+name: kubectl
  #+begin_src config :noweb yes :eval no
  kubectl --kubeconfig=<<KUBE_CONFIG>>
