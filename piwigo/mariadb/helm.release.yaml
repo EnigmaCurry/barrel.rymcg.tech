@@ -15,9 +15,60 @@ spec:
   interval: 5m0s
   targetNamespace: piwigo
   values:
-    primary:
-      persistence:
-        size: 5Gi
     auth:
       username: piwigo
       database: piwigo
+    primary:
+      persistence:
+        size: 10Gi
+      extraVolumes:
+      - name: mariadb-backups
+        persistentVolumeClaim:
+          claimName: piwigo-mariadb-backups
+      sidecars:
+      - name: mariadb-backups
+        image: woolfg/mysql-backup-sidecar:v0.3.1-mariadb-10.4
+        env:
+        - name: CRON_SCHEDULE
+          value: "30 2 * * *"
+        - name: BACKUP_DIR
+          value: /backup
+        - name: INCREMENTAL
+          value: "true"
+        - name: MYSQL_HOST
+          value: localhost
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb
+              key: mariadb-root-password
+        volumeMounts:
+        - name: mariadb
+          mountPath: /var/lib/mysql
+        - name: mariadb-backups
+          mountPath: /backup
+      - name: mariadb-s3-upload
+        image: lobaro/restic-backup-docker:1.3.1-0.9.6
+        env:
+        - name: RESTIC_REPOSITORY
+          value: s3:https://s3.us-west-1.wasabisys.com/gallery.enigmacurry.com-mariadb
+        - name: RESTIC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: piwigo
+              key: RESTIC_PASSWORD
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-backups
+              key: S3_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-backups
+              key: S3_SECRET_ACCESS_KEY
+        volumeMounts:
+        - name: mariadb-backups
+          mountPath: /data

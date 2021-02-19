@@ -6,4 +6,5 @@ resources:
 - statefulset.yaml
 - service.yaml
 - piwigo-s3-backup.sealed_secret.yaml
+- mariadb/backups.pvc.yaml
 - mariadb/helm.release.yaml

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-19 Fri 09:16 -->
+<!-- 2021-02-19 Fri 12:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>barrel.rymcg.tech</title>
@@ -394,26 +394,28 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#Piwigo">6. Piwigo</a>
 <ul>
-<li><a href="#Get%20database%20credentials">6.1. Get database credentials</a></li>
-<li><a href="#Piwigo%20attached%20MariaDB%20service">6.2. Piwigo attached MariaDB service</a>
+<li><a href="#Piwigo%20Config">6.1. Piwigo Config</a>
 <ul>
-<li><a href="#PIWIGO_MARIADB_PVC_SIZE">6.2.1. PIWIGO_MARIADB_PVC_SIZE</a></li>
-<li><a href="#PIWIGO_MARIADB_HELM_CHART_VERSION">6.2.2. PIWIGO_MARIADB_HELM_CHART_VERSION</a></li>
-<li><a href="#PIWIGO_MARIADB_DATABASE_NAME">6.2.3. PIWIGO_MARIADB_DATABASE_NAME</a></li>
-<li><a href="#PIWIGO_MARIADB_DATABASE_USER">6.2.4. PIWIGO_MARIADB_DATABASE_USER</a></li>
-<li><a href="#piwigo%2Fmariadb%2Fhelm.release.yaml">6.2.5. piwigo/mariadb/helm.release.yaml</a></li>
+<li><a href="#PIWIGO_DOMAIN">6.1.1. PIWIGO_DOMAIN</a></li>
+<li><a href="#PIWIGO_PVC_SIZE">6.1.2. PIWIGO_PVC_SIZE</a></li>
+<li><a href="#PIWIGO_MARIADB_BACKUP_REPOSITORY">6.1.3. PIWIGO_MARIADB_BACKUP_REPOSITORY</a></li>
+<li><a href="#PIWIGO_MARIADB_PVC_SIZE">6.1.4. PIWIGO_MARIADB_PVC_SIZE</a></li>
+<li><a href="#PIWIGO_MARIADB_BACKUP_PVC_SIZE">6.1.5. PIWIGO_MARIADB_BACKUP_PVC_SIZE</a></li>
+<li><a href="#PIWIGO_MARIADB_HELM_CHART_VERSION">6.1.6. PIWIGO_MARIADB_HELM_CHART_VERSION</a></li>
+<li><a href="#PIWIGO_MARIADB_DATABASE_NAME">6.1.7. PIWIGO_MARIADB_DATABASE_NAME</a></li>
+<li><a href="#PIWIGO_MARIADB_DATABASE_USER">6.1.8. PIWIGO_MARIADB_DATABASE_USER</a></li>
 </ul>
 </li>
-<li><a href="#Backup%20Piwigo%20config%2Bphotos%20to%20S3">6.3. Backup Piwigo config+photos to S3</a></li>
-<li><a href="#piwigo%2Fkustomization.yaml">6.4. piwigo/kustomization.yaml</a></li>
-<li><a href="#piwigo%2Fnamespace.yaml">6.5. piwigo/namespace.yaml</a></li>
-<li><a href="#piwigo%2Fpvc.yaml">6.6. piwigo/pvc.yaml</a></li>
-<li><a href="#piwigo%2Fstatefulset.yaml">6.7. piwigo/statefulset.yaml</a></li>
-<li><a href="#piwigo%2Fservice.yaml">6.8. piwigo/service.yaml</a></li>
-<li><a href="#Piwigo%20Config">6.9. Piwigo Config</a>
+<li><a href="#Piwigo%20Deployment">6.2. Piwigo Deployment</a>
 <ul>
-<li><a href="#PIWIGO_DOMAIN">6.9.1. PIWIGO_DOMAIN</a></li>
-<li><a href="#PIWIGO_PVC_SIZE">6.9.2. PIWIGO_PVC_SIZE</a></li>
+<li><a href="#Get%20database%20credentials">6.2.1. Get database credentials</a></li>
+<li><a href="#Piwigo%20attached%20MariaDB%20service">6.2.2. Piwigo attached MariaDB service</a></li>
+<li><a href="#Backup%20Piwigo%20config%2Bphotos%20to%20S3">6.2.3. Backup Piwigo config+photos to S3</a></li>
+<li><a href="#piwigo%2Fkustomization.yaml">6.2.4. piwigo/kustomization.yaml</a></li>
+<li><a href="#piwigo%2Fnamespace.yaml">6.2.5. piwigo/namespace.yaml</a></li>
+<li><a href="#piwigo%2Fpvc.yaml">6.2.6. piwigo/pvc.yaml</a></li>
+<li><a href="#piwigo%2Fstatefulset.yaml">6.2.7. piwigo/statefulset.yaml</a></li>
+<li><a href="#piwigo%2Fservice.yaml">6.2.8. piwigo/service.yaml</a></li>
 </ul>
 </li>
 </ul>
@@ -585,7 +587,7 @@ This is the source download URL for this document, used in the <a href="#Getting
 guide above.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org14c4e03">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
+<pre class="src src-config" id="org50921ac">https://raw.githubusercontent.com/EnigmaCurry/barrel.rymcg.tech/master/barrel.rymcg.tech.org
 </pre>
 </div>
 </div>
@@ -597,7 +599,7 @@ guide above.
 Set <code>CLUSTER</code> to be the domain name for your cluster:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org152144e">barrel.rymcg.tech
+<pre class="src src-config" id="orgaa342ca">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -611,7 +613,7 @@ cloud deployments, this should be <code>root</code>, but you can also use an acc
 no-password sudo privileges.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org82a7ffa">root
+<pre class="src src-config" id="org2c3b02a">root
 </pre>
 </div>
 </div>
@@ -623,7 +625,7 @@ no-password sudo privileges.
 <code>KUBE_CONFIG</code> is the local path to the kubectl config file
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org2820026">${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="orgbd1217d">${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -642,7 +644,7 @@ use <code>kubectl</code>, let's create a NoWeb alias for it called <code>&lt;&lt
 in other code blocks:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgd63c329">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
+<pre class="src src-config" id="org7d1f1cd">kubectl --kubeconfig=${HOME}/.kube/barrel.rymcg.tech-config
 </pre>
 </div>
 </div>
@@ -717,7 +719,7 @@ Edit the variables for the Traefik config:
 provider. 
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org417c328">letsencrypt@enigmacurry.com
+<pre class="src src-config" id="org750edd4">letsencrypt@enigmacurry.com
 </pre>
 </div>
 </div>
@@ -733,7 +735,7 @@ valid certificates in web browsers).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-config" id="org2176ef2">https://acme-v02.api.letsencrypt.org/directory
+<pre class="src src-config" id="org342a9c7">https://acme-v02.api.letsencrypt.org/directory
 </pre>
 </div>
 </div>
@@ -748,7 +750,7 @@ domain name to respond to. <code>TRAEFIK_WHOAMI_DOMAIN</code> is the subdomain t
 whoami service responds to.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orge00c714">whoami.barrel.rymcg.tech
+<pre class="src src-config" id="org2874227">whoami.barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -760,7 +762,7 @@ whoami service responds to.
 The version number of Traefik to install (eg. <code>2.3</code>).
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orge4b5d91">v2.3
+<pre class="src src-config" id="org74b6d87">v2.3
 </pre>
 </div>
 </div>
@@ -772,7 +774,7 @@ The version number of Traefik to install (eg. <code>2.3</code>).
 <code>TRAEFIK_LOG_LEVEL</code> is the filter level on the traefik log.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org9c95c39">INFO
+<pre class="src src-config" id="org6f03c12">INFO
 </pre>
 </div>
 </div>
@@ -796,7 +798,7 @@ repository. Only the cluster can decrypt sealed secrets.
 <h4 id="kube-system%2Fsealed-secrets%2Fkustomization.yaml"><span class="section-number-4">4.2.1</span> kube-system/sealed-secrets/kustomization.yaml</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
-<pre class="src src-yaml" id="orge8bab02"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
+<pre class="src src-yaml" id="org9edb104"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
 <span style="color: #7590db;">resources</span>:
 - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.14.1/controller.yaml
@@ -811,7 +813,7 @@ repository. Only the cluster can decrypt sealed secrets.
 Choose the <a href="https://github.com/bitnami-labs/sealed-secrets/releases">release version for Sealed Secrets</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orge7d5ac7">v0.14.1
+<pre class="src src-config" id="orga99cd89">v0.14.1
 </pre>
 </div>
 </div>
@@ -888,7 +890,7 @@ Test with TLS verification on:
 </div>
 
 <p>
-TLS will not verify until you use the production <a href="#org2176ef2">TRAEFIK_ACME_SERVER</a>.
+TLS will not verify until you use the production <a href="#org342a9c7">TRAEFIK_ACME_SERVER</a>.
 </p>
 </div>
 </div>
@@ -1079,6 +1081,7 @@ to direct traffic to any other node.
         - <span style="color: #7590db;">containerPort</span>: 443
           <span style="color: #7590db;">hostPort</span>: 443
           <span style="color: #7590db;">name</span>: websecure
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Forward port 2222 for Gitea git hosting</span>
         - <span style="color: #7590db;">containerPort</span>: 2222
           <span style="color: #7590db;">hostPort</span>: 2222
           <span style="color: #7590db;">name</span>: ssh
@@ -1104,7 +1107,7 @@ to direct traffic to any other node.
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 <a href="https://github.com/traefik/whoami">traefik/whoami</a> can be deployed to test Traefik functionality. It listens to the
-domain <a href="#orge00c714">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
+domain <a href="#org2874227">TRAEFIK_WHOAMI_DOMAIN</a> (eg. <code>whoami.k3s.example.com</code>).
 </p>
 
 <div class="org-src-container">
@@ -1211,7 +1214,7 @@ The name of the git repository containing these org files, and from which flux
 reads. Usually it's the same as <code>CLUSTER</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgcc8ebbf">barrel.rymcg.tech
+<pre class="src src-config" id="org07e31cc">barrel.rymcg.tech
 </pre>
 </div>
 </div>
@@ -1223,7 +1226,7 @@ reads. Usually it's the same as <code>CLUSTER</code>.
 The name of the owner of the git repository.
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="orgec4f3b0">EnigmaCurry
+<pre class="src src-config" id="org3fe859e">EnigmaCurry
 </pre>
 </div>
 </div>
@@ -1235,7 +1238,7 @@ The name of the owner of the git repository.
 The Hostname and Port number of the git repository remote URL:
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org9afac2e">github.com:22
+<pre class="src src-config" id="orgf37e86d">github.com:22
 </pre>
 </div>
 </div>
@@ -1251,7 +1254,7 @@ organization name. (This might work with other URL forms, like HTTPS, but this
 is the only one that's been tested:)
 </p>
 <div class="org-src-container">
-<pre class="src src-config" id="org63dcba5">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
+<pre class="src src-config" id="org3bf1e77">ssh://git@github.com:22/EnigmaCurry/barrel.rymcg.tech.git
 </pre>
 </div>
 </div>
@@ -1305,7 +1308,7 @@ with its state.
 
 <p>
 If using Gitea, click the <code>+</code> icon in the upper right corner to create a <code>New
-Repository</code>. Call the new repository the same as <a href="#orgcc8ebbf">FLUX_REPO_NAME</a>.
+Repository</code>. Call the new repository the same as <a href="#org07e31cc">FLUX_REPO_NAME</a>.
 </p>
 
 <p>
@@ -1548,30 +1551,133 @@ And in another minute or so, the namespace should be gone:
 <div id="outline-container-Piwigo" class="outline-2">
 <h2 id="Piwigo"><span class="section-number-2">6</span> Piwigo</h2>
 <div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-Piwigo%20Config" class="outline-3">
+<h3 id="Piwigo%20Config"><span class="section-number-3">6.1</span> Piwigo Config</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-PIWIGO_DOMAIN" class="outline-4">
+<h4 id="PIWIGO_DOMAIN"><span class="section-number-4">6.1.1</span> PIWIGO_DOMAIN</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+This is the domain name for the image gallery:
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org0f32278">gallery.enigmacurry.com
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_PVC_SIZE" class="outline-4">
+<h4 id="PIWIGO_PVC_SIZE"><span class="section-number-4">6.1.2</span> PIWIGO_PVC_SIZE</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+This is the domain name for the image gallery:
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org4d88e4a">50Gi
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_BACKUP_REPOSITORY" class="outline-4">
+<h4 id="PIWIGO_MARIADB_BACKUP_REPOSITORY"><span class="section-number-4">6.1.3</span> PIWIGO_MARIADB_BACKUP_REPOSITORY</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+This is the S3 repository URL to backup MariaDB to (not stored as a secret so as
+to never lose the location of the backup! The credentials however, will be
+stored in a secret, and can be regenerated by your S3 host if they are lost.):
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org8a13156">s3:https://s3.us-west-1.wasabisys.com/gallery.enigmacurry.com-mariadb
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_PVC_SIZE" class="outline-4">
+<h4 id="PIWIGO_MARIADB_PVC_SIZE"><span class="section-number-4">6.1.4</span> PIWIGO_MARIADB_PVC_SIZE</h4>
+<div class="outline-text-4" id="text-6-1-4">
+<p>
+How big do you need the Database volume?
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org60a42aa">5Gi
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_BACKUP_PVC_SIZE" class="outline-4">
+<h4 id="PIWIGO_MARIADB_BACKUP_PVC_SIZE"><span class="section-number-4">6.1.5</span> PIWIGO_MARIADB_BACKUP_PVC_SIZE</h4>
+<div class="outline-text-4" id="text-6-1-5">
+<p>
+How big do you need the Backup Database volume?
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="orgd2030fa">10Gi
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_HELM_CHART_VERSION" class="outline-4">
+<h4 id="PIWIGO_MARIADB_HELM_CHART_VERSION"><span class="section-number-4">6.1.6</span> PIWIGO_MARIADB_HELM_CHART_VERSION</h4>
+<div class="outline-text-4" id="text-6-1-6">
+<p>
+What version of the <a href="https://github.com/bitnami/charts/tree/master/bitnami/mariadb">MariaDB Helm Chart</a> do you want to install?
+</p>
+<div class="org-src-container">
+<pre class="src src-config" id="org7bc4bd7">9.0.1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_DATABASE_NAME" class="outline-4">
+<h4 id="PIWIGO_MARIADB_DATABASE_NAME"><span class="section-number-4">6.1.7</span> PIWIGO_MARIADB_DATABASE_NAME</h4>
+<div class="outline-text-4" id="text-6-1-7">
+<div class="org-src-container">
+<pre class="src src-config" id="orgd5e63d4">piwigo
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-PIWIGO_MARIADB_DATABASE_USER" class="outline-4">
+<h4 id="PIWIGO_MARIADB_DATABASE_USER"><span class="section-number-4">6.1.8</span> PIWIGO_MARIADB_DATABASE_USER</h4>
+<div class="outline-text-4" id="text-6-1-8">
+<div class="org-src-container">
+<pre class="src src-config" id="org9173b50">piwigo
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-Piwigo%20Deployment" class="outline-3">
+<h3 id="Piwigo%20Deployment"><span class="section-number-3">6.2</span> Piwigo Deployment</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 <a href="https://piwigo.org/">Piwigo</a> is a mature, open source, PHP based, image web gallery, supporting public
 and private galleries, user registration, comments, notifications, slideshows,
 bootstrap theme for wide device compatibility, and also there's native mobile
 apps available. The images will be stored primarily on a pod-local volume, and
 additionally a sidecar deployment of <a href="https://restic.net/">Restic</a> will regularly backup the volume to
-remote S3 storage.
+remote S3 storage. The database is stored in MariaDB, and additional sidecars
+are created to regularly backup the database to S3 with Restic.
 </p>
 
 <p>
 Assuming you have already installed Flux, and you have tangled your Org source,
 and committed, and pushed to the git repository, piwigo should now already be
-running. You just need to sign in and configure the database credentials to get
-started.
+running. To get started, you just need to sign in, and configure the database
+credentials.
 </p>
 </div>
 
-<div id="outline-container-Get%20database%20credentials" class="outline-3">
-<h3 id="Get%20database%20credentials"><span class="section-number-3">6.1</span> Get database credentials</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-Get%20database%20credentials" class="outline-4">
+<h4 id="Get%20database%20credentials"><span class="section-number-4">6.2.1</span> Get database credentials</h4>
+<div class="outline-text-4" id="text-6-2-1">
 <p>
-You need the database password in order to fill in the config form (You must
-un-comment the <code>echo</code> line (remove <code>#</code>), and accept your own responsibility to
-clear the RESULTS before saving this file!):
+You need the database password in order to fill in the config form (In order to
+see the password, you must un-comment the following <code>echo</code> line (remove <code>#</code>)
+before running it, remember to clear the RESULTS before saving this file
+again: <code>C-c C-v k</code>):
 </p>
 
 <div class="org-src-container">
@@ -1582,7 +1688,8 @@ clear the RESULTS before saving this file!):
 </div>
 
 <p>
-Now you can go to the PIWIGO_DOMAIN in your browser and configure the database:
+Now you can go to the <code>PIWIGO_DOMAIN</code> in your browser and configure the
+database:
 </p>
 
 <ul class="org-ul">
@@ -1595,55 +1702,32 @@ Now you can go to the PIWIGO_DOMAIN in your browser and configure the database:
 </div>
 </div>
 
-<div id="outline-container-Piwigo%20attached%20MariaDB%20service" class="outline-3">
-<h3 id="Piwigo%20attached%20MariaDB%20service"><span class="section-number-3">6.2</span> Piwigo attached MariaDB service</h3>
-<div class="outline-text-3" id="text-6-2">
-</div>
-<div id="outline-container-PIWIGO_MARIADB_PVC_SIZE" class="outline-4">
-<h4 id="PIWIGO_MARIADB_PVC_SIZE"><span class="section-number-4">6.2.1</span> PIWIGO_MARIADB_PVC_SIZE</h4>
-<div class="outline-text-4" id="text-6-2-1">
-<p>
-How big do you need the Database volume?
-</p>
-<div class="org-src-container">
-<pre class="src src-config" id="org8537943">5Gi
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_HELM_CHART_VERSION" class="outline-4">
-<h4 id="PIWIGO_MARIADB_HELM_CHART_VERSION"><span class="section-number-4">6.2.2</span> PIWIGO_MARIADB_HELM_CHART_VERSION</h4>
+<div id="outline-container-Piwigo%20attached%20MariaDB%20service" class="outline-4">
+<h4 id="Piwigo%20attached%20MariaDB%20service"><span class="section-number-4">6.2.2</span> Piwigo attached MariaDB service</h4>
 <div class="outline-text-4" id="text-6-2-2">
-<p>
-What version of the <a href="https://github.com/bitnami/charts/tree/master/bitnami/mariadb">MariaDB Helm Chart</a> do you want to install?
-</p>
+</div>
+<ol class="org-ol">
+<li><a id="piwigo%2Fmariadb%2Fbackups.pvc.yaml"></a>piwigo/mariadb/backups.pvc.yaml<br />
+<div class="outline-text-5" id="text-6-2-2-1">
 <div class="org-src-container">
-<pre class="src src-config" id="orgc8d6546">9.0.1
+<pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
+<span style="color: #7590db;">kind</span>: PersistentVolumeClaim
+<span style="color: #7590db;">metadata</span>:
+  <span style="color: #7590db;">name</span>: piwigo-mariadb-backups
+  <span style="color: #7590db;">namespace</span>: piwigo
+<span style="color: #7590db;">spec</span>:
+  <span style="color: #7590db;">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color: #7590db;">resources</span>:
+    <span style="color: #7590db;">requests</span>:
+      <span style="color: #7590db;">storage</span>: 
+  <span style="color: #7590db;">storageClassName</span>: local-path
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_DATABASE_NAME" class="outline-4">
-<h4 id="PIWIGO_MARIADB_DATABASE_NAME"><span class="section-number-4">6.2.3</span> PIWIGO_MARIADB_DATABASE_NAME</h4>
-<div class="outline-text-4" id="text-6-2-3">
-<div class="org-src-container">
-<pre class="src src-config" id="orgf9c679e">piwigo
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-PIWIGO_MARIADB_DATABASE_USER" class="outline-4">
-<h4 id="PIWIGO_MARIADB_DATABASE_USER"><span class="section-number-4">6.2.4</span> PIWIGO_MARIADB_DATABASE_USER</h4>
-<div class="outline-text-4" id="text-6-2-4">
-<div class="org-src-container">
-<pre class="src src-config" id="orgb21be50">piwigo
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-piwigo%2Fmariadb%2Fhelm.release.yaml" class="outline-4">
-<h4 id="piwigo%2Fmariadb%2Fhelm.release.yaml"><span class="section-number-4">6.2.5</span> piwigo/mariadb/helm.release.yaml</h4>
-<div class="outline-text-4" id="text-6-2-5">
+</li>
+<li><a id="piwigo%2Fmariadb%2Fhelm.release.yaml"></a>piwigo/mariadb/helm.release.yaml<br />
+<div class="outline-text-5" id="text-6-2-2-2">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: helm.toolkit.fluxcd.io/v2beta1
 <span style="color: #7590db;">kind</span>: HelmRelease
@@ -1662,21 +1746,73 @@ What version of the <a href="https://github.com/bitnami/charts/tree/master/bitna
   <span style="color: #7590db;">interval</span>: 5m0s
   <span style="color: #7590db;">targetNamespace</span>: piwigo
   <span style="color: #7590db;">values</span>:
-    <span style="color: #7590db;">primary</span>:
-      <span style="color: #7590db;">persistence</span>:
-        <span style="color: #7590db;">size</span>: 5Gi
     <span style="color: #7590db;">auth</span>:
       <span style="color: #7590db;">username</span>: piwigo
       <span style="color: #7590db;">database</span>: piwigo
+    <span style="color: #7590db;">primary</span>:
+      <span style="color: #7590db;">persistence</span>:
+        <span style="color: #7590db;">size</span>: 10Gi
+      <span style="color: #7590db;">extraVolumes</span>:
+      - <span style="color: #7590db;">name</span>: mariadb-backups
+        <span style="color: #7590db;">persistentVolumeClaim</span>:
+          <span style="color: #7590db;">claimName</span>: piwigo-mariadb-backups
+      <span style="color: #7590db;">sidecars</span>:
+      - <span style="color: #7590db;">name</span>: mariadb-backups
+        <span style="color: #7590db;">image</span>: woolfg/mysql-backup-sidecar:v0.3.1-mariadb-10.4
+        <span style="color: #7590db;">env</span>:
+        - <span style="color: #7590db;">name</span>: CRON_SCHEDULE
+          <span style="color: #7590db;">value</span>: <span style="color: #2d9574;">"30 2 * * *"</span>
+        - <span style="color: #7590db;">name</span>: BACKUP_DIR
+          <span style="color: #7590db;">value</span>: /backup
+        - <span style="color: #7590db;">name</span>: INCREMENTAL
+          <span style="color: #7590db;">value</span>: <span style="color: #2d9574;">"true"</span>
+        - <span style="color: #7590db;">name</span>: MYSQL_HOST
+          <span style="color: #7590db;">value</span>: localhost
+        - <span style="color: #7590db;">name</span>: MYSQL_USER
+          <span style="color: #7590db;">value</span>: root
+        - <span style="color: #7590db;">name</span>: MYSQL_PASSWORD
+          <span style="color: #7590db;">valueFrom</span>:
+            <span style="color: #7590db;">secretKeyRef</span>:
+              <span style="color: #7590db;">name</span>: mariadb
+              <span style="color: #7590db;">key</span>: mariadb-root-password
+        <span style="color: #7590db;">volumeMounts</span>:
+        - <span style="color: #7590db;">name</span>: mariadb
+          <span style="color: #7590db;">mountPath</span>: /var/lib/mysql
+        - <span style="color: #7590db;">name</span>: mariadb-backups
+          <span style="color: #7590db;">mountPath</span>: /backup
+      - <span style="color: #7590db;">name</span>: mariadb-s3-upload
+        <span style="color: #7590db;">image</span>: lobaro/restic-backup-docker:1.3.1-0.9.6
+        <span style="color: #7590db;">env</span>:
+        - <span style="color: #7590db;">name</span>: RESTIC_REPOSITORY
+          <span style="color: #7590db;">value</span>: s3:https://s3.us-west-1.wasabisys.com/gallery.enigmacurry.com-mariadb
+        - <span style="color: #7590db;">name</span>: RESTIC_PASSWORD
+          <span style="color: #7590db;">valueFrom</span>:
+            <span style="color: #7590db;">secretKeyRef</span>:
+              <span style="color: #7590db;">name</span>: piwigo
+              <span style="color: #7590db;">key</span>: RESTIC_PASSWORD
+        - <span style="color: #7590db;">name</span>: AWS_ACCESS_KEY_ID
+          <span style="color: #7590db;">valueFrom</span>:
+            <span style="color: #7590db;">secretKeyRef</span>:
+              <span style="color: #7590db;">name</span>: mariadb-backups
+              <span style="color: #7590db;">key</span>: S3_ACCESS_KEY_ID
+        - <span style="color: #7590db;">name</span>: AWS_SECRET_ACCESS_KEY
+          <span style="color: #7590db;">valueFrom</span>:
+            <span style="color: #7590db;">secretKeyRef</span>:
+              <span style="color: #7590db;">name</span>: mariadb-backups
+              <span style="color: #7590db;">key</span>: S3_SECRET_ACCESS_KEY
+        <span style="color: #7590db;">volumeMounts</span>:
+        - <span style="color: #7590db;">name</span>: mariadb-backups
+          <span style="color: #7590db;">mountPath</span>: /data
 </pre>
 </div>
 </div>
-</div>
+</li>
+</ol>
 </div>
 
-<div id="outline-container-Backup%20Piwigo%20config%2Bphotos%20to%20S3" class="outline-3">
-<h3 id="Backup%20Piwigo%20config%2Bphotos%20to%20S3"><span class="section-number-3">6.3</span> Backup Piwigo config+photos to S3</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-Backup%20Piwigo%20config%2Bphotos%20to%20S3" class="outline-4">
+<h4 id="Backup%20Piwigo%20config%2Bphotos%20to%20S3"><span class="section-number-4">6.2.3</span> Backup Piwigo config+photos to S3</h4>
+<div class="outline-text-4" id="text-6-2-3">
 <p>
 You probably consider your photos important, so you should make a backup to an
 external storage bucket. You will put your S3 credentials into a sealed secret.
@@ -1704,14 +1840,11 @@ before pressing Enter:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #7590db;">S3_ENDPOINT</span>=s3.us-west-1.wasabisys.com
-<span style="color: #7590db;">S3_BUCKET</span>=mybucket
-<span style="color: #7590db;">S3_ACCESS_KEY_ID</span>=xxxxxxxxx
+<pre class="src src-shell"><span style="color: #7590db;">S3_ACCESS_KEY_ID</span>=xxxxxxxxx
 <span style="color: #7590db;">S3_SECRET_ACCESS_KEY</span>=xxxxxxxx
 <span style="color: #7590db;">SRC_DIR</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>/git/clusters/barrel.rymcg.tech/
 kubectl create secret generic piwigo-s3-backup <span style="color: #2d9574;">\</span>
    --namespace piwigo --dry-run=client -o json <span style="color: #2d9574;">\</span>
-   --from-literal=<span style="color: #7590db;">RESTIC_REPOSITORY</span>=s3:https://$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">S3_ENDPOINT</span><span style="color: #4f97d7;">}</span>/$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">S3_BUCKET</span><span style="color: #4f97d7;">}</span> <span style="color: #2d9574;">\</span>
    --from-literal=<span style="color: #7590db;">S3_ACCESS_KEY_ID</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">S3_ACCESS_KEY_ID</span><span style="color: #4f97d7;">}</span> <span style="color: #2d9574;">\</span>
    --from-literal=<span style="color: #7590db;">S3_SECRET_ACCESS_KEY</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">S3_SECRET_ACCESS_KEY</span><span style="color: #4f97d7;">}</span> <span style="color: #2d9574;">\</span>
    | kubeseal -o yaml &gt; <span style="color: #2d9574;">\</span>
@@ -1733,9 +1866,9 @@ occur immediately:
 </div>
 </div>
 
-<div id="outline-container-piwigo%2Fkustomization.yaml" class="outline-3">
-<h3 id="piwigo%2Fkustomization.yaml"><span class="section-number-3">6.4</span> piwigo/kustomization.yaml</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-piwigo%2Fkustomization.yaml" class="outline-4">
+<h4 id="piwigo%2Fkustomization.yaml"><span class="section-number-4">6.2.4</span> piwigo/kustomization.yaml</h4>
+<div class="outline-text-4" id="text-6-2-4">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: kustomize.config.k8s.io/v1beta1
 <span style="color: #7590db;">kind</span>: Kustomization
@@ -1745,14 +1878,15 @@ occur immediately:
 - statefulset.yaml
 - service.yaml
 - piwigo-s3-backup.sealed_secret.yaml
+- mariadb/backups.pvc.yaml
 - mariadb/helm.release.yaml
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-piwigo%2Fnamespace.yaml" class="outline-3">
-<h3 id="piwigo%2Fnamespace.yaml"><span class="section-number-3">6.5</span> piwigo/namespace.yaml</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-piwigo%2Fnamespace.yaml" class="outline-4">
+<h4 id="piwigo%2Fnamespace.yaml"><span class="section-number-4">6.2.5</span> piwigo/namespace.yaml</h4>
+<div class="outline-text-4" id="text-6-2-5">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
 <span style="color: #7590db;">kind</span>: Namespace
@@ -1762,9 +1896,9 @@ occur immediately:
 </div>
 </div>
 </div>
-<div id="outline-container-piwigo%2Fpvc.yaml" class="outline-3">
-<h3 id="piwigo%2Fpvc.yaml"><span class="section-number-3">6.6</span> piwigo/pvc.yaml</h3>
-<div class="outline-text-3" id="text-6-6">
+<div id="outline-container-piwigo%2Fpvc.yaml" class="outline-4">
+<h4 id="piwigo%2Fpvc.yaml"><span class="section-number-4">6.2.6</span> piwigo/pvc.yaml</h4>
+<div class="outline-text-4" id="text-6-2-6">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
 <span style="color: #7590db;">kind</span>: PersistentVolumeClaim
@@ -1782,9 +1916,9 @@ occur immediately:
 </div>
 </div>
 </div>
-<div id="outline-container-piwigo%2Fstatefulset.yaml" class="outline-3">
-<h3 id="piwigo%2Fstatefulset.yaml"><span class="section-number-3">6.7</span> piwigo/statefulset.yaml</h3>
-<div class="outline-text-3" id="text-6-7">
+<div id="outline-container-piwigo%2Fstatefulset.yaml" class="outline-4">
+<h4 id="piwigo%2Fstatefulset.yaml"><span class="section-number-4">6.2.7</span> piwigo/statefulset.yaml</h4>
+<div class="outline-text-4" id="text-6-2-7">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: apps/v1
 <span style="color: #7590db;">kind</span>: StatefulSet
@@ -1826,9 +1960,9 @@ occur immediately:
             <span style="color: #7590db;">secretKeyRef</span>:
               <span style="color: #7590db;">name</span>: piwigo-s3-backup
               <span style="color: #7590db;">key</span>: RESTIC_REPOSITORY
-        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Just hardcode a default restic password, I don't care about</span>
-        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">encryption, and I worry more about forgetting the password than</span>
-        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">anything else. Data is protected by S3 credentials not encryption.</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Restic /requires/ encryption, but I don't need it, and I worry more</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">about forgetting the password than anything else. Data is protected by</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">S3 credentials not encryption. The hard coded `password` here is cool:</span>
         - <span style="color: #7590db;">name</span>: RESTIC_PASSWORD
           <span style="color: #7590db;">value</span>: password
         - <span style="color: #7590db;">name</span>: AWS_ACCESS_KEY_ID
@@ -1853,9 +1987,9 @@ occur immediately:
 </div>
 </div>
 
-<div id="outline-container-piwigo%2Fservice.yaml" class="outline-3">
-<h3 id="piwigo%2Fservice.yaml"><span class="section-number-3">6.8</span> piwigo/service.yaml</h3>
-<div class="outline-text-3" id="text-6-8">
+<div id="outline-container-piwigo%2Fservice.yaml" class="outline-4">
+<h4 id="piwigo%2Fservice.yaml"><span class="section-number-4">6.2.8</span> piwigo/service.yaml</h4>
+<div class="outline-text-4" id="text-6-2-8">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #7590db;">apiVersion</span>: v1
 <span style="color: #7590db;">kind</span>: Service
@@ -1901,34 +2035,6 @@ occur immediately:
       <span style="color: #7590db;">port</span>: 80
   <span style="color: #7590db;">tls</span>:
     <span style="color: #7590db;">certResolver</span>: default
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-Piwigo%20Config" class="outline-3">
-<h3 id="Piwigo%20Config"><span class="section-number-3">6.9</span> Piwigo Config</h3>
-<div class="outline-text-3" id="text-6-9">
-</div>
-<div id="outline-container-PIWIGO_DOMAIN" class="outline-4">
-<h4 id="PIWIGO_DOMAIN"><span class="section-number-4">6.9.1</span> PIWIGO_DOMAIN</h4>
-<div class="outline-text-4" id="text-6-9-1">
-<p>
-This is the domain name for the image gallery:
-</p>
-<div class="org-src-container">
-<pre class="src src-config" id="org1eeae49">gallery.enigmacurry.com
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-PIWIGO_PVC_SIZE" class="outline-4">
-<h4 id="PIWIGO_PVC_SIZE"><span class="section-number-4">6.9.2</span> PIWIGO_PVC_SIZE</h4>
-<div class="outline-text-4" id="text-6-9-2">
-<p>
-This is the domain name for the image gallery:
-</p>
-<div class="org-src-container">
-<pre class="src src-config" id="orgc993850">50Gi
 </pre>
 </div>
 </div>
@@ -2027,7 +2133,7 @@ along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: EnigmaCurry</p>
-<p class="date">Created: 2021-02-19 Fri 09:16</p>
+<p class="date">Created: 2021-02-19 Fri 12:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

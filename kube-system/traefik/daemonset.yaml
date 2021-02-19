@@ -48,6 +48,7 @@ spec:
         - containerPort: 443
           hostPort: 443
           name: websecure
+        # Forward port 2222 for Gitea git hosting
         - containerPort: 2222
           hostPort: 2222
           name: ssh
