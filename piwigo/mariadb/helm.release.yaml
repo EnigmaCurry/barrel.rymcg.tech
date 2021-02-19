@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: piwigo-mariadb
-  namespace: flux-system
+  name: mariadb
+  namespace: piwigo
 spec:
   chart:
     spec:
@@ -13,7 +13,6 @@ spec:
         name: bitnami
   releaseName: mariadb
   interval: 5m0s
-  targetNamespace: piwigo
   values:
     auth:
       username: piwigo
