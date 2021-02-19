@@ -11,10 +11,8 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-        namespace: flux-system
   releaseName: mariadb
   interval: 5m0s
-  targetNamespace: piwigo
   values:
     auth:
       username: piwigo
