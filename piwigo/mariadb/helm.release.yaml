@@ -56,17 +56,17 @@ spec:
         - name: RESTIC_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: piwigo
+              name: piwigo-s3-backup
               key: RESTIC_PASSWORD
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
-              name: mariadb-backups
+              name: piwigo-s3-backup
               key: S3_ACCESS_KEY_ID
         - name: AWS_SECRET_ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: mariadb-backups
+              name: piwigo-s3-backup
               key: S3_SECRET_ACCESS_KEY
         volumeMounts:
         - name: mariadb-backups
