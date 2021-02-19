@@ -17,10 +17,12 @@ spec:
   valuesFrom: 
   - kind: Secret
     name: mariadb
+    namespace: piwigo
     valuesKey: mariadb-root-password
     targetPath: auth.rootPassword
   - kind: Secret
     name: mariadb
+    namespace: piwigo
     valuesKey: mariadb-password
     targetPath: auth.password
   values:
