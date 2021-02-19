@@ -17,7 +17,6 @@ spec:
     auth:
       username: piwigo
       database: piwigo
-      existingSecret: mariadb
     primary:
       persistence:
         size: 5Gi
