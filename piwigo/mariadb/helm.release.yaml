@@ -53,11 +53,11 @@ spec:
         env:
         - name: RESTIC_REPOSITORY
           value: s3:https://s3.us-west-1.wasabisys.com/gallery.enigmacurry.com-mariadb
+        # Restic /requires/ encryption, but I don't need it, and I worry more
+        # about forgetting the password than anything else. Data is protected by
+        # S3 credentials not encryption. The hard coded `password` here is cool:
         - name: RESTIC_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: piwigo-s3-backup
-              key: RESTIC_PASSWORD
+          value: password
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
