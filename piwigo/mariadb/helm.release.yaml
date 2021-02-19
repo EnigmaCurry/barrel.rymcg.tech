@@ -20,7 +20,7 @@ spec:
       database: piwigo
     primary:
       persistence:
-        size: 10Gi
+        size: 5Gi
       extraVolumes:
       - name: mariadb-backups
         persistentVolumeClaim:

@@ -322,7 +322,7 @@ s3:https://s3.us-west-1.wasabisys.com/<<PIWIGO_DOMAIN>>-mariadb
    #+end_src
 *** PIWIGO_MARIADB_BACKUP_PVC_SIZE
    How big do you need the Backup Database volume?
-   #+name: PIWIGO_MARIADB_PVC_SIZE
+   #+name: PIWIGO_MARIADB_BACKUP_PVC_SIZE
    #+begin_src config :noweb yes :eval no
    10Gi
    #+end_src

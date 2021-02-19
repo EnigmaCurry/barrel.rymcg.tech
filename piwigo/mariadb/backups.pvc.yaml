@@ -8,5 +8,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 
+      storage: 10Gi
   storageClassName: local-path
