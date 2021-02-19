@@ -38,6 +38,11 @@ spec:
             secretKeyRef:
               name: piwigo-s3-backup
               key: RESTIC_REPOSITORY
+        # Just hardcode a default restic password, I don't care about
+        # encryption, and I worry more about forgetting the password than
+        # anything else. Data is protected by S3 credentials not encryption.
+        - name: RESTIC_PASSWORD
+          value: password
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
