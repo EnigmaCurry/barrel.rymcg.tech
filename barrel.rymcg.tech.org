@@ -340,6 +340,12 @@ s3:https://s3.us-west-1.wasabisys.com/<<PIWIGO_DOMAIN>>-mariadb
    #+begin_src config :noweb yes :eval no
    9.0.1
    #+end_src
+*** PIWIGO_MARIADB_BACKUP_IMAGE
+This needs to match the same mariadb version as the helm chart (eg. 10.5). [[https://github.com/woolfg/mysql-backup-sidecar/releases][See releases]]
+#+name: PIWIGO_MARIADB_BACKUP_IMAGE
+#+begin_src config :noweb yes :eval no
+woolfg/mysql-backup-sidecar:v0.3.2-mariadb-10.5
+#+end_src
 *** PIWIGO_MARIADB_DATABASE_NAME
    #+name: PIWIGO_MARIADB_DATABASE_NAME
    #+begin_src config :noweb yes :eval no
