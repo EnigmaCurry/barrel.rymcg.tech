@@ -13,6 +13,7 @@ spec:
         name: bitnami
   releaseName: mariadb
   interval: 5m0s
+  targetNamespace: piwigo
   values:
     auth:
       username: piwigo
