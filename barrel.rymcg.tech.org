@@ -298,6 +298,12 @@ Follow the deployment instructions in the Flux library INCLUDE:
    #+begin_src config :noweb yes :eval no
    gallery.enigmacurry.com
    #+end_src
+*** PIWIGO_PVC_SIZE
+   This is the domain name for the image gallery:
+   #+name: PIWIGO_PVC_SIZE
+   #+begin_src config :noweb yes :eval no
+   50Gi
+   #+end_src
 * LICENSE
 #+INCLUDE: "~/git/vendor/enigmacurry/literate-k3s/LICENSE.org"
 * COMMENT Emacs Local Variables
