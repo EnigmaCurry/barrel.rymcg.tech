@@ -14,6 +14,15 @@ spec:
   releaseName: mariadb
   interval: 5m0s
   targetNamespace: piwigo
+  valuesFrom: 
+  - kind: Secret
+      name: mariadb
+      valuesKey: mariadb-root-password
+      targetPath: auth.rootPassword
+  - kind: Secret
+      name: mariadb
+      valuesKey: mariadb-password
+      targetPath: auth.password
   values:
     auth:
       username: piwigo
