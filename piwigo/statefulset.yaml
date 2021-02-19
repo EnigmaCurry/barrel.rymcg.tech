@@ -38,11 +38,6 @@ spec:
             secretKeyRef:
               name: piwigo-s3-backup
               key: RESTIC_REPOSITORY
-        - name: RESTIC_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: piwigo-s3-backup
-              key: RESTIC_PASSWORD
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
