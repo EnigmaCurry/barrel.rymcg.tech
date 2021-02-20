@@ -96,7 +96,7 @@ The resulting directory structure will look like this (annotated):
  │     ├─pvc.yaml <-- PhysicalVolumeClaim creates 100MB volume to store acme.json
  │     ├─rbac.yaml <-- Roles for Traefik to watch and respond to the cluster
  │     └─whoami.yaml <-- Deployment manifest for `whoami` testing service
- ├─pyapp <-- All the Python app stuff will go here.
+ ├─piwigo <-- All the Piwigo image gallery stuff will go here.
  ├─meta <-- Holds the CSS and JavaScript for the HTML export.
  │  └─css
  │     └─build
