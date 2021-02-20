@@ -261,8 +261,9 @@ directory.
 ** Flux Config
 *** FLUX_VERSION
 Choose the [[https://github.com/fluxcd/flux2/releases][Flux2 release version]] :
+#+name: FLUX_VERSION
 #+begin_src config :noweb yes :eval no
-v0.7.7
+v0.8.2
 #+end_src
 *** FLUX_REPO_NAME
 The name of the git repository containing these org files, and from which flux
