@@ -7,7 +7,8 @@
 * Getting Started
 ** Introduction
 This is the live configuration for EnigmaCurry's personal k3s cluster hosted at
-barrel.rymcg.tech. Initially this will host a [[https://github.com/Piwigo/Piwigo][Piwigo]] image gallery.
+barrel.rymcg.tech. Initially this will host a [[https://github.com/Piwigo/Piwigo][Piwigo]] image gallery, with
+automated S3 backups.
 
 This is a [[https://github.com/EnigmaCurry/literate-k3s][literate-k3s]] Emacs Org-Babel document, (or you may be reading its
 exported HTML form on the web.) If you are new to this, please read the upstream
